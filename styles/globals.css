@@ -2,9 +2,12 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: "Mukta", "Noto Sans KR", -apple-system, BlinkMacSystemFont,
+    Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+    Helvetica Neue, sans-serif;
 }
+/* //Gill Sans
+//Quicksand */
 
 a {
   color: inherit;
@@ -13,4 +16,16 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+button {
+  word-break: keep-all;
+  background-color: white;
+  border: solid grey 0.1px;
+  border-radius: 5px;
+  padding: 4px 10px;
+}
+
+p {
+  word-break: keep-all;
 }
