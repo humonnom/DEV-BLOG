@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useGetPage } from "../api/notion";
 
-function JavaScript() {
+function useNotion() {
   const { res } = useGetPage();
   console.log("??????????");
   useEffect(() => {
@@ -14,4 +14,4 @@ function JavaScript() {
   return <div>js</div>;
 }
 
-export default JavaScript;
+export default useNotion;
