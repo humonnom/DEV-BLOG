@@ -21,11 +21,25 @@ a {
 button {
   word-break: keep-all;
   background-color: white;
-  border: solid grey 0.1px;
-  border-radius: 5px;
+  border: solid rgba(101, 101, 101, 0.851) 0.4px;
+
+  border-radius: 8px;
   padding: 4px 10px;
 }
 
 p {
   word-break: keep-all;
+}
+
+input {
+  height: 30px;
+  border: none;
+  border-bottom: solid grey 2px;
+}
+
+input:focus {
+  outline: none;
+}
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px white inset;
 }

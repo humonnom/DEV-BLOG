@@ -12,7 +12,11 @@ export const HeadConf = () => {
 };
 
 export const Footer = () => {
-  return <footer className={styles.footer}>footer</footer>;
+  return (
+    <footer className={styles.footer}>
+      만든이에게 박수 보내기&nbsp;&nbsp;<button>&nbsp;👏&nbsp;&nbsp;</button>
+    </footer>
+  );
 };
 
 export const Container = ({ contents }) => {

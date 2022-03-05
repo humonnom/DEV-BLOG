@@ -1,4 +1,9 @@
 import { useMemo, useState } from "react";
+import styles from "../styles/Poodle.module.css";
+
+export function isKorean(value) {
+  return !value.match(/[^a-zA-Z0-9\p{Hangul}]/);
+}
 
 export function DesktopForm({ onSubmit }) {
   const [value, setValue] = useState("");
@@ -7,12 +12,14 @@ export function DesktopForm({ onSubmit }) {
 
   const message = useMemo(() => {
     console.log(value);
-    if (value.length > 5) {
-      return "다섯 글자가 넘었어요";
+    if (value.length > 0 && isKorean(value)) {
+      console.log("한국어가 아님");
+      return "Warning! 한글로 써주세요.";
     } else if (value.length < 5) {
-      return "아직 칸이 남았어요";
+      return "Hint! 정답은 다섯 글자에요.";
+    } else if (value.length === 5) {
+      return "맞았는지 볼까요?";
     }
-
     return "";
   }, [value]);
 
@@ -26,9 +33,15 @@ export function DesktopForm({ onSubmit }) {
             name="input"
             value={value}
             onChange={onChange}
+            onKeyDown={(event) => {
+              if (event.key === "Enter") {
+                onSubmit();
+              }
+            }}
+            maxLength={5}
           />
         </label>
-        <p>{message}</p>
+        <p className={styles.hint}>{message}</p>
         <button type="button" onClick={onSubmit}>
           제출
         </button>
