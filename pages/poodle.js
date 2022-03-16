@@ -1,4 +1,6 @@
+/** @jsxImportSource @emotion/react */
 import { useEffect, useMemo, useState } from "react";
+import { css } from "@emotion/react";
 import { Container } from "../components/Comp";
 import { DesktopForm } from "../components/util";
 import styles from "../styles/Poodle.module.css";
@@ -80,18 +82,27 @@ export default function Poodle() {
 
   const Contents = (
     <>
-      <h2 className={styles.title}>푸들 🐩</h2>
-      <p className={styles.desc}>한국어 초성 워들 </p>
+      <div>
+        <h2 className={styles.title}>푸들 🐩</h2>
+        <p className={styles.desc}>한국어 초성 워들 </p>
+      </div>
       <div className={styles.buttons}>
         <button>🔗&nbsp;&nbsp;결과 공유하기</button>
         <button type="button" onClick={() => window.location.assign("/poodle")}>
           🤟&nbsp;&nbsp;한판 더!
         </button>
       </div>
-      <div className={styles.board}>{board}</div>
+      <div css={Board}>
+        {/* <p className={styles.desc}>{parsed}</p> */}
+        <div className={styles.board}>{board}</div>
+      </div>
       {!isSuccess && comp}
       {isSuccess && <div>correct!</div>}
     </>
   );
   return <Container contents={Contents} />;
 }
+
+const Board = css`
+  margin-top: 30px;
+`;
