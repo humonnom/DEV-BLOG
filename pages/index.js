@@ -1,15 +1,21 @@
 import Link from "next/link";
-import { Container } from "../components/Comp";
+import { Container } from "../layouts/Layout";
 export default function Home() {
   const Contents = (
     <>
-      {/* <p className="kr">`Document Studio`</p> */}
-      {/* <a href="https://www.dgf5.com">https://www.dgf5.com</a> */}
-      {/* <p className="kr"> :: see the detail :: </p> */}
-      <p className="kr">`A-B-C-Digital`</p>
-      <div>
-        <Link href="/poodle">POODLE</Link>
-      </div>
+      <p className="kr">Hello</p>
+      <p>
+        <Link href="/blog">BLOG</Link>
+      </p>
+      <p>
+        <Link href="/projects">PROJECTS</Link>
+      </p>
+      <p>
+        <Link href="/contact">CONTACT</Link>
+      </p>
+      <p>
+        <Link href="/contact">ABOUT THIS SITE</Link>
+      </p>
     </>
   );
   return <Container contents={Contents} />;

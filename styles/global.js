@@ -13,10 +13,16 @@ export const globalStyles = (
           Helvetica Neue, sans-serif;
         a {
           color: inherit;
-          text-decoration: none;
+          ${"" /* text-decoration: none; */}
         }
         p {
           word-break: keep-all;
+        }
+
+        button {
+          word-break: keep-all;
+          background-color: inherit;
+          border: none;
         }
       }
     `}
