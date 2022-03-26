@@ -14,7 +14,7 @@ export default function Home() {
         <Link href="/contact">CONTACT</Link>
       </p>
       <p>
-        <Link href="/contact">ABOUT THIS SITE</Link>
+        <Link href="/about">ABOUT THIS SITE</Link>
       </p>
     </>
   );

@@ -49,3 +49,7 @@ export const COLOR_STYLE = {
   orange: "#ff3d00",
   coral: "#ff4545",
 };
+
+export const BORDER_STYLE = {
+  black: `solid 1px ${COLOR_STYLE.black}`,
+};
