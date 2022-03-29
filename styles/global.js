@@ -33,11 +33,11 @@ export const SHADOW_STYLE = {
 };
 
 export const FONT_SIZE = {
-  xSmall: "1rem",
-  small: "1.5rem",
-  medium: "2.0rem",
-  large: "2.5rem",
-  xLarge: "3rem",
+  xSmall: "0.5rem",
+  small: "0.8rem",
+  medium: "1.0rem",
+  large: "1.2rem",
+  xLarge: "1.5rem",
 };
 
 export const COLOR_STYLE = {

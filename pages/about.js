@@ -4,17 +4,18 @@ import { Container } from "../layouts/Layout";
 export default function About() {
   const Contents = (
     <>
-      <p className='kr'>About</p>
+      <p className="kr">About</p>
       <div>
         <p>:: pebble</p>
-        <WhitePebble inside='this is white pebble' />
-        <WhitePebble inside='short one' />
-        <BlackPebble inside='normal black pebble' />
+        <WhitePebble inside="this is white pebble" />
+        <WhitePebble inside="short one" />
+        <BlackPebble inside="normal black pebble" />
         <BlackPebble
-          inside='i have action'
+          inside="i have action"
           action={() => alert("you clicked black pebble x)")}
         />
-        <Title inside='title' />
+        <Title inside="title" />
+        <Title inside="title - covered type" hasBorder={true} />
       </div>
     </>
   );
