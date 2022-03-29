@@ -1,4 +1,4 @@
-import { TextBox } from "../components/contents";
+import { ImageBox, TextBox } from "../components/contents";
 import { BlackPebble, WhitePebble } from "../components/pebble";
 import { Title } from "../components/title";
 import { Container } from "../layouts/Layout";
@@ -30,6 +30,8 @@ export default function About() {
 |  🐒   | => | ❤️   | => |  🍎   |
 +----+     +----+     +----+    "
         />
+        <p>:: image</p>
+        <ImageBox />
       </div>
     </>
   );

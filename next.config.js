@@ -5,4 +5,7 @@ module.exports = {
     NOTION_HOME_ID: "bbf8dbec8e8d4c8e845d54d2ce18b4f4",
     PORT: 3000,
   },
+  images: {
+    domains: ["onitbucket.s3.ap-northeast-2.amazonaws.com"],
+  },
 };
