@@ -1,25 +1,18 @@
 import React from "react";
 import { css } from "@emotion/react";
 import { BORDER_STYLE, FONT_SIZE } from "../styles/global";
+import { getPadding } from "../styles/getter";
 
-export const Title = ({ inside, sidePadding, hasBorder }) => {
+export const Title = ({ inside, padding, hasBorder }) => {
   const title = <h2 css={TitleStyle}>`{inside}`</h2>;
+  const paddingH = 5;
+  const paddingW = padding || 10;
   if (hasBorder) {
-    return <div css={[TitleContainer, getPadding(sidePadding)]}>{title}</div>;
+    return (
+      <div css={[TitleContainer, getPadding(paddingH, paddingW)]}>{title}</div>
+    );
   } else {
     return <>{title}</>;
-  }
-};
-
-const getPadding = (size) => {
-  if (size >= 0) {
-    return css`
-      padding: 5px ${size}px;
-    `;
-  } else {
-    return css`
-      padding: 5px 10px;
-    `;
   }
 };
 
