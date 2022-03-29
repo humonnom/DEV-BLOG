@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { css } from "@emotion/react";
-import { BORDER_STYLE, FONT_SIZE } from "../styles/global";
+import { BORDER_STYLE, COLOR_STYLE, FONT_SIZE } from "../styles/global";
 import { getPadding, getWidth } from "../styles/getter";
 
 export const TextBox = ({ inside, padding, widthType, ascii }) => {
@@ -47,7 +47,7 @@ export const ImageBox = (src) => {
 
 const ImageBoxStyle = css`
   display: block;
-  background-color: red;
+  background-color: ${COLOR_STYLE.paleGrey};
   position: relative;
   width: 500px;
   height: 300px;
