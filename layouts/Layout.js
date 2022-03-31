@@ -2,6 +2,7 @@
 import Head from "next/head";
 import { css } from "@emotion/react";
 import { useState } from "react";
+// import { Guide } from "../components/guide";
 
 export const HeadConf = () => {
   return (
@@ -26,6 +27,7 @@ export const Nav = () => {
         {!clicked && <p>~</p>}
         {clicked && <p>-</p>}
       </button>
+      {/* {clicked && <Guide inside="nav" />} */}
     </div>
   );
 };
