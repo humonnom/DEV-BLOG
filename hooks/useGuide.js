@@ -21,7 +21,6 @@ const useGuide = ({ comp, style, guide }) => {
     return (
       <div
         css={css`
-          background-color: skyblue;
           position: relative;
         `}
       >
