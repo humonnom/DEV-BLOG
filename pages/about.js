@@ -1,37 +1,29 @@
 import { ImageBox, TextBox } from "../components/contents";
-// import { Guide } from "../components/guide";
 import { BlackPebble, WhitePebble } from "../components/pebble";
 import { Title } from "../components/title";
 import { Container } from "../layouts/Layout";
-// import useMouse from "@react-hook/mouse-position";
 import React from "react";
+import { css } from "@emotion/react";
 
 export default function About() {
-  // const ref = React.useRef(null);
-  // const mouse = useMouse(ref, {
-  //   enterDelay: 100,
-  //   leaveDelay: 100,
-  // });
-
   const Contents = (
     <>
       <p className="kr">About</p>
-      {/* <div ref={ref}> */}
       <div>
         <p>:: pebble</p>
-        <WhitePebble inside="this is white pebble" />
-        <WhitePebble inside="short one" />
-        <BlackPebble inside="normal black pebble" />
-        <BlackPebble
-          inside="i have action"
-          action={() => alert("you clicked black pebble x)")}
-        />
-        <p>:: guide</p>
-        {/* <Guide inside="guide message" /> */}
-        <WhitePebble
-          inside="simple example"
-          guide="this is guide message for simple example"
-        />
+        <div css={PebbleContainer}>
+          <WhitePebble inside="this is white pebble" />
+          <WhitePebble inside="default pebble" />
+          <BlackPebble inside="normal black pebble" />
+          <BlackPebble
+            inside="i have action"
+            action={() => alert("you clicked black pebble x)")}
+          />
+          <WhitePebble
+            inside="pebble with guide"
+            guide="this is guide message for simple example"
+          />
+        </div>
         <p>:: title</p>
         <Title inside="Hello" />
         <Title inside="this is covered type" hasBorder={true} />
@@ -50,10 +42,15 @@ export default function About() {
         />
         <p>:: image</p>
         <ImageBox />
-        {/* x: ${mouse.x} */}
-        {/* y: ${mouse.y} */}
       </div>
     </>
   );
   return <Container contents={Contents} />;
 }
+
+const PebbleContainer = css`
+  width: 15vw;
+  div {
+    margin-bottom: 3px;
+  }
+`;

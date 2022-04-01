@@ -3,25 +3,35 @@ import useMouse from "@react-hook/mouse-position";
 import { css } from "@emotion/react";
 import { Guide } from "../components/guide";
 
-const useGuide = ({ comp, guide }) => {
+const useGuide = ({ comp, style, guide }) => {
   const ref = React.useRef(null);
   const mouse = useMouse(ref, {
     enterDelay: 100,
     leaveDelay: 100,
   });
 
+  const x = useMemo(() => {
+    return parseInt(mouse.x);
+  }, [mouse.x]);
+  const y = useMemo(() => {
+    return parseInt(mouse.y);
+  }, [mouse.y]);
+
   const compWithGuide = useMemo(() => {
     return (
-      <>
-        <div ref={ref} css={RefStyle}>
+      <div
+        css={css`
+          background-color: skyblue;
+          position: relative;
+        `}
+      >
+        <div ref={ref} css={[style, RefStyle]}>
           {comp}
-          {/* x: {mouse.x} */}
-          {/* y: {mouse.y} */}
-          <Guide inside={guide} x={mouse.x} y={mouse.y} />
         </div>
-      </>
+        <Guide inside={guide} x={x} y={y} />
+      </div>
     );
-  }, [mouse, guide]);
+  }, [x, y, guide]);
 
   return { compWithGuide };
 };

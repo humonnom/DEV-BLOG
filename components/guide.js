@@ -2,16 +2,11 @@ import { css } from "@emotion/react";
 import { useMemo } from "react";
 import { BORDER_STYLE } from "../styles/global";
 
-export const Guide = ({ inside, invisible, x, y }) => {
+export const Guide = ({ inside, x, y }) => {
   const comp = useMemo(() => {
     return (
       <>
-        <div
-          css={[
-            GuideContainerStyle(parseInt(x), parseInt(y)),
-            getVisible(invisible),
-          ]}
-        >
+        <div css={[GuideContainerStyle(x, y), getVisible(x, y)]}>
           <p>{inside}</p>
         </div>
       </>
@@ -21,8 +16,8 @@ export const Guide = ({ inside, invisible, x, y }) => {
   return comp;
 };
 
-const getVisible = (invisible) => {
-  if (invisible) {
+const getVisible = (x, y) => {
+  if (!x && !y) {
     return css`
       display: none;
     `;
@@ -32,11 +27,14 @@ const getVisible = (invisible) => {
 const GuideContainerStyle = (x, y) => {
   return css`
     position: absolute;
-    z-index: 99;
-    top: 0;
-    left: 0;
+    height: 15px;
+    overflow: scroll;
+    width: 100%;
+    z-index: 2;
+    top: ${y}px;
+    left: ${x}px;
     border: ${BORDER_STYLE.black};
-    background-color: red;
+    background-color: white;
     padding: 0px;
   `;
 };
