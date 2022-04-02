@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
-import { useMemo } from "react";
-import { BORDER_STYLE } from "../styles/global";
+import { useEffect, useMemo } from "react";
+import { BORDER_STYLE, COLOR_STYLE, FONT_SIZE } from "../styles/global";
 
 export const Guide = ({ inside, x, y }) => {
   const comp = useMemo(() => {
@@ -11,7 +11,7 @@ export const Guide = ({ inside, x, y }) => {
         </div>
       </>
     );
-  }, [x, y]);
+  }, [inside, x, y]);
 
   return comp;
 };
@@ -22,18 +22,25 @@ const getVisible = (x, y) => {
       display: none;
     `;
   }
-  return css``;
+  return css`
+    display: flex;
+  `;
 };
+
 const GuideContainerStyle = (x, y) => {
   return css`
     position: absolute;
-    height: 15px;
-    overflow: scroll;
-    width: 100%;
+    pointer-events: none;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 17px;
     z-index: 2;
     top: ${y}px;
     left: ${x}px;
     border: ${BORDER_STYLE.black};
+    color: ${COLOR_STYLE.black};
+    font-size: ${FONT_SIZE.xSmall};
     background-color: white;
     padding: 0px;
   `;

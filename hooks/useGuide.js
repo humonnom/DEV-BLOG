@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import useMouse from "@react-hook/mouse-position";
 import { css } from "@emotion/react";
 import { Guide } from "../components/guide";

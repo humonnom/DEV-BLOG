@@ -21,7 +21,7 @@ export default function About() {
           />
           <WhitePebble
             inside="pebble with guide"
-            guide="this is guide message for simple example"
+            guide="this is guide message"
           />
         </div>
         <p>:: title</p>
