@@ -9,8 +9,7 @@ export const TextBox = ({ inside, padding, widthType, ascii }) => {
   const paddingW = padding || 10;
   return (
     <div
-      css={[TextBoxStyle, getPadding(paddingH, paddingW), getWidth(widthType)]}
-    >
+      css={[TextBoxStyle, getPadding(paddingH, paddingW), getWidth(widthType)]}>
       <p css={[TextStyle(ascii)]}>{inside}</p>
     </div>
   );
@@ -36,10 +35,10 @@ export const ImageBox = (src) => {
   return (
     <div css={ImageBoxStyle}>
       <Image
-        src="https://onitbucket.s3.ap-northeast-2.amazonaws.com/image/25%222022-03-15T15:53:22.612Z%22.jpeg"
-        alt="banana tree"
-        layout="fill"
-        objectFit="cover"
+        src='https://onitbucket.s3.ap-northeast-2.amazonaws.com/image/25%222022-03-15T15:53:22.612Z%22.jpeg'
+        alt='banana tree'
+        layout='fill'
+        objectFit='cover'
       />
     </div>
   );
@@ -49,7 +48,7 @@ const ImageBoxStyle = css`
   display: block;
   background-color: ${COLOR_STYLE.paleGrey};
   position: relative;
-  width: 500px;
-  height: 300px;
+  width: 80vw;
+  height: 40vh;
   border: ${BORDER_STYLE.black};
 `;

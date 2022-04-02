@@ -3,7 +3,12 @@ import Head from "next/head";
 import Link from "next/link";
 import { css } from "@emotion/react";
 import { useState } from "react";
-import { BORDER_STYLE, COLOR_STYLE, FONT_SIZE } from "../styles/global";
+import {
+  BORDER_STYLE,
+  COLOR_STYLE,
+  FlexCenter,
+  FONT_SIZE,
+} from "../styles/global";
 
 export const HeadConf = () => {
   return (
@@ -57,7 +62,7 @@ export const Footer = () => {
     <footer css={FooterStyle}>
       <p>
         by <a href='https://github.com/humonnom'>@humonnom</a> 2022,{" "}
-        <Link href='/contact'>about this site</Link>
+        <Link href='/about'>about this site</Link>
       </p>
     </footer>
   );
@@ -83,17 +88,18 @@ export const Container = ({ contents }) => {
 };
 
 const ContainerStyle = css`
-  padding: 0 2rem;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0 auto;
 `;
 
 const MainStyle = css`
   min-height: 100vh;
   padding: 4rem 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  ${FlexCenter}
 `;
 
 const FooterStyle = css`

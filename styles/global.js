@@ -19,8 +19,9 @@ export const globalStyles = (
         }
         button {
           word-break: keep-all;
-          background-color: inherit;
+          background-color: unset;
           border: none;
+          padding: 0px;
         }
         ul {
           list-style: none;
@@ -57,3 +58,12 @@ export const COLOR_STYLE = {
 export const BORDER_STYLE = {
   black: `solid 1px ${COLOR_STYLE.black}`,
 };
+
+export const FlexCenter = css`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+`;

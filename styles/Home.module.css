@@ -19,11 +19,6 @@
   background-color: red;
 }
 
-.main a:hover {
-  background-color: yellow;
-  color: black;
-}
-
 .kr {
   font-weight: 200;
 }

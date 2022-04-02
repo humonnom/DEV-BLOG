@@ -1,14 +1,14 @@
 import { css } from "@emotion/react";
 import React, { useMemo } from "react";
 import useGuide from "../hooks/useGuide";
-import { BORDER_STYLE, COLOR_STYLE } from "../styles/global";
+import { BORDER_STYLE, COLOR_STYLE, FlexCenter } from "../styles/global";
 
 export const Pebble = ({ inside, action, type, guide }) => {
   const text = <p css={TextStyle(type)}>{inside}</p> || "pebble";
   const onClick = action ? action : () => {};
 
   const comp = (
-    <button type="button" onClick={onClick}>
+    <button type='button' onClick={onClick}>
       {text}
     </button>
   );
@@ -23,18 +23,29 @@ export const Pebble = ({ inside, action, type, guide }) => {
 };
 
 export const WhitePebble = ({ inside, action, guide }) => {
-  return <Pebble inside={inside} action={action} type="white" guide={guide} />;
+  return <Pebble inside={inside} action={action} type='white' guide={guide} />;
 };
 export const BlackPebble = ({ inside, action, guide }) => {
-  return <Pebble inside={inside} action={action} type="black" guide={guide} />;
+  return <Pebble inside={inside} action={action} type='black' guide={guide} />;
 };
 
 const PebbleBasicStyle = css`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.1px 13px;
+  ${FlexCenter}
   border-radius: 20px;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+`;
+
+const WhitePebbleStyle = css`
+  background-color: ${COLOR_STYLE.white};
+  border: ${BORDER_STYLE.black};
+  ${PebbleBasicStyle}
+`;
+
+const BlackPebbleStyle = css`
+  background-color: ${COLOR_STYLE.black};
+  ${PebbleBasicStyle}
 `;
 
 const PebbleStyle = (type) => {
@@ -45,31 +56,14 @@ const PebbleStyle = (type) => {
   }
 };
 
-const WhitePebbleStyle = css`
-  ${PebbleBasicStyle}
-  background-color: ${COLOR_STYLE.white};
-  border: ${BORDER_STYLE.black};
-  ${"" /* color: ${COLOR_STYLE.black}; */}
-`;
-
-const BlackPebbleStyle = css`
-  ${PebbleBasicStyle}
-  background-color: ${COLOR_STYLE.black};
-  ${"" /* color: ${COLOR_STYLE.white}; */}
-`;
-
 const TextStyle = (type) => {
   if (type === "black") {
-    return BlackTextStyle;
+    return css`
+      color: ${COLOR_STYLE.white};
+    `;
   } else {
-    return WhiteTextStyle;
+    return css`
+      color: ${COLOR_STYLE.black};
+    `;
   }
 };
-
-const WhiteTextStyle = css`
-  color: ${COLOR_STYLE.black};
-`;
-
-const BlackTextStyle = css`
-  color: ${COLOR_STYLE.white};
-`;

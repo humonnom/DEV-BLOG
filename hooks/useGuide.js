@@ -2,6 +2,7 @@ import React, { useEffect, useMemo } from "react";
 import useMouse from "@react-hook/mouse-position";
 import { css } from "@emotion/react";
 import { Guide } from "../components/guide";
+import { FlexCenter } from "../styles/global";
 
 const useGuide = ({ comp, style, guide }) => {
   const ref = React.useRef(null);
@@ -21,16 +22,19 @@ const useGuide = ({ comp, style, guide }) => {
     return (
       <div
         css={css`
+          ${FlexCenter}
           position: relative;
-        `}
-      >
+          width: 100%;
+        `}>
         <div ref={ref} css={[style, RefStyle]}>
           {comp}
         </div>
-        <Guide inside={guide} x={x} y={y} />
+        <div className='guide'>
+          <Guide inside={guide} x={x} y={y} />
+        </div>
       </div>
     );
-  }, [x, y, guide]);
+  }, [x, y, guide, style, comp]);
 
   return { compWithGuide };
 };
@@ -38,11 +42,11 @@ const useGuide = ({ comp, style, guide }) => {
 export default useGuide;
 
 const RefStyle = css`
-  div {
+  & .guide {
     display: none;
   }
   &:hover {
-    div {
+    & .guide {
       display: block;
     }
   }
