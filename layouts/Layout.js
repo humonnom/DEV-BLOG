@@ -9,8 +9,8 @@ export const HeadConf = () => {
   return (
     <Head>
       <title>Jueun park&apos;s Dev blog</title>
-      <meta name="author" content="humonnom" />
-      <link rel="icon" href="/favicon.ico" />
+      <meta name='author' content='humonnom' />
+      <link rel='icon' href='/favicon.ico' />
     </Head>
   );
 };
@@ -24,26 +24,26 @@ export const Nav = () => {
 
   return (
     <div css={[NavStyle]}>
-      <button type="button" onClick={handleClick}>
+      <button type='button' onClick={handleClick}>
         {!clicked && <p>~</p>}
         {clicked && <p>-</p>}
       </button>
       <div css={[getDisplay(clicked), NavListContainerStyle]}>
-        <p>다른 페이지로 가기</p>
+        <p css={NavTitleStyle}>다른 페이지로 가기</p>
         <ul css={NavListStyle}>
           <li>
             <p>
-              <Link href="/blog">DEV BLOG</Link>
+              <Link href='/blog'>DEV BLOG</Link>
             </p>
           </li>
           <li>
             <p>
-              <Link href="/projects">PROJECTS</Link>
+              <Link href='/projects'>PROJECTS</Link>
             </p>
           </li>
           <li>
             <p>
-              <Link href="/contact">CONTACT</Link>
+              <Link href='/contact'>CONTACT</Link>
             </p>
           </li>
         </ul>
@@ -56,8 +56,8 @@ export const Footer = () => {
   return (
     <footer css={FooterStyle}>
       <p>
-        by <a href="https://github.com/humonnom">@humonnom</a> 2022,{" "}
-        <Link href="/contact">about this site</Link>
+        by <a href='https://github.com/humonnom'>@humonnom</a> 2022,{" "}
+        <Link href='/contact'>about this site</Link>
       </p>
     </footer>
   );
@@ -142,8 +142,8 @@ const NavListContainerStyle = css`
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  height: 100px;
-  width: 100px;
+  height: 180px;
+  width: 140px;
   z-index: 2;
   right: 24px;
   top: 24px;
@@ -151,8 +151,14 @@ const NavListContainerStyle = css`
   color: ${COLOR_STYLE.black};
   font-size: ${FONT_SIZE.small};
   background-color: white;
-  padding: 50px 25px;
+  padding: 20px 25px;
 `;
+
+const NavTitleStyle = css`
+  margin: 15px auto;
+  text-align: center;
+`;
+
 const NavListStyle = css`
   display: flex;
   flex-direction: column;
@@ -160,10 +166,8 @@ const NavListStyle = css`
   align-items: center;
   margin: 0px;
   li {
-    ${"" /* border-bottom: ${BORDER_STYLE.black}; */}
-    margin: 8px;
     p {
-      padding: 0px;
+      padding: 11px;
       margin: 0px;
     }
   }
