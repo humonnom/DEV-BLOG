@@ -1,8 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import Head from "next/head";
+import Link from "next/link";
 import { css } from "@emotion/react";
 import { useState } from "react";
-// import { Guide } from "../components/guide";
+import { BORDER_STYLE, COLOR_STYLE, FONT_SIZE } from "../styles/global";
 
 export const HeadConf = () => {
   return (
@@ -27,7 +28,26 @@ export const Nav = () => {
         {!clicked && <p>~</p>}
         {clicked && <p>-</p>}
       </button>
-      {/* {clicked && <Guide inside="nav" />} */}
+      <div css={[getDisplay(clicked), NavListContainerStyle]}>
+        <p>다른 페이지로 가기</p>
+        <ul css={NavListStyle}>
+          <li>
+            <p>
+              <Link href="/blog">DEV BLOG</Link>
+            </p>
+          </li>
+          <li>
+            <p>
+              <Link href="/projects">PROJECTS</Link>
+            </p>
+          </li>
+          <li>
+            <p>
+              <Link href="/contact">CONTACT</Link>
+            </p>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };
@@ -36,8 +56,8 @@ export const Footer = () => {
   return (
     <footer css={FooterStyle}>
       <p>
-        by <a href="https://github.com/humonnom">@humonnom</a> 2022, about this
-        site
+        by <a href="https://github.com/humonnom">@humonnom</a> 2022,{" "}
+        <Link href="/contact">about this site</Link>
       </p>
     </footer>
   );
@@ -87,6 +107,7 @@ const FooterStyle = css`
 
 const NavStyle = css`
   display: flex;
+  position: relative;
   justify-content: end;
   align-items: center;
   margin-top: 20px;
@@ -101,5 +122,49 @@ const NavStyle = css`
     color: white;
     font-family: "Josefin Sans", sans-serif;
     font-size: 1.4rem;
+  }
+`;
+
+const getDisplay = (open) => {
+  if (open) {
+    return css`
+      display: flex;
+    `;
+  } else {
+    return css`
+      display: none;
+    `;
+  }
+};
+
+const NavListContainerStyle = css`
+  position: absolute;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100px;
+  width: 100px;
+  z-index: 2;
+  right: 24px;
+  top: 24px;
+  border: ${BORDER_STYLE.black};
+  color: ${COLOR_STYLE.black};
+  font-size: ${FONT_SIZE.small};
+  background-color: white;
+  padding: 50px 25px;
+`;
+const NavListStyle = css`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0px;
+  li {
+    ${"" /* border-bottom: ${BORDER_STYLE.black}; */}
+    margin: 8px;
+    p {
+      padding: 0px;
+      margin: 0px;
+    }
   }
 `;

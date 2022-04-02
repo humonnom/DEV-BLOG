@@ -22,6 +22,10 @@ export const globalStyles = (
           background-color: inherit;
           border: none;
         }
+        ul {
+          list-style: none;
+          padding-left: 0px;
+        }
       }
     `}
   />
