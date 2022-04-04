@@ -29,7 +29,7 @@ export const Nav = () => {
 
   return (
     <div css={[NavStyle]}>
-      <button type="button" onClick={handleClick}>
+      <button type="button" css={NavButtonStyle} onClick={handleClick}>
         {!clicked && <p>~</p>}
         {clicked && <p>-</p>}
       </button>
@@ -112,24 +112,27 @@ const FooterStyle = css`
 `;
 
 const NavStyle = css`
-  display: flex;
   position: relative;
-  top: 5vh;
-  right: 5vw;
+  display: flex;
   justify-content: end;
   align-items: center;
-  button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 16px;
-    background-color: black;
-    color: white;
-    font-family: "Josefin Sans", sans-serif;
-    font-size: 1.4rem;
-  }
+  height: 10vh;
+`;
+
+const NavButtonStyle = css`
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  right: 30px;
+  top: 30px;
+  display: flex;
+  width: 40px;
+  height: 40px;
+  border-radius: 16px;
+  background-color: black;
+  color: white;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 1.4rem;
 `;
 
 const getDisplay = (open) => {
@@ -152,8 +155,8 @@ const NavListContainerStyle = css`
   height: 180px;
   width: 140px;
   z-index: 2;
-  right: 24px;
-  top: 24px;
+  top: 55px;
+  right: 55px;
   border: ${BORDER_STYLE.black};
   color: ${COLOR_STYLE.black};
   font-size: ${FONT_SIZE.small};
