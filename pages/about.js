@@ -22,7 +22,7 @@ export default function About() {
       <div css={[FlexCenter]}>
         <div css={[SectionStyle, useGetBorderRadius()]}>
           <div css={PebbleContainer}>
-            <p css={SectionTitleStyle}>:: pebble ::</p>
+            <p css={SectionTitleStyle}>:: PEBBLE ::</p>
             <div>
               <WhitePebble inside="this is white pebble" />
             </div>
@@ -48,7 +48,7 @@ export default function About() {
         </div>
 
         <div css={[SectionStyle, useGetBorderRadius()]}>
-          <p css={SectionTitleStyle}>:: title ::</p>
+          <p css={SectionTitleStyle}>:: TITLE ::</p>
           <div>
             <Title inside="Hello" white={true} />
           </div>
@@ -64,7 +64,7 @@ export default function About() {
           </div>
         </div>
         <div css={[SectionStyle, useGetBorderRadius()]}>
-          <p css={SectionTitleStyle}>:: textbox ::</p>
+          <p css={SectionTitleStyle}>:: TEXT BOX ::</p>
 
           <div>
             <TextBox inside="simple text box" />
@@ -94,11 +94,11 @@ export default function About() {
           </div>
         </div>
         <div css={[SectionStyle, useGetBorderRadius()]}>
-          <p css={SectionTitleStyle}>:: image ::</p>
+          <p css={SectionTitleStyle}>:: IMAGE BOX ::</p>
           <ImageBox white={true} />
         </div>
         <div css={[SectionStyle, useGetBorderRadius()]}>
-          <p css={SectionTitleStyle}>:: square ::</p>
+          <p css={SectionTitleStyle}>:: SQUARE ::</p>
           <Square
             title="Article"
             link="/about"
@@ -117,7 +117,7 @@ const SectionStyle = css`
   ${FlexCenter}
   height: 100%;
   max-width: 450px;
-  padding: 100px 0px;
+  padding: 70px 0px 100px 0px;
   margin: 0px 0px;
   border: ${BORDER_STYLE.white};
   background-color: black;
@@ -129,6 +129,7 @@ const SectionStyle = css`
 const SectionTitleStyle = css`
   color: ${COLOR_STYLE.white};
   font-size: ${FONT_SIZE.medium};
+  margin-bottom: 50px;
 `;
 
 const PebbleContainer = css`
