@@ -19,7 +19,7 @@ export const getWidth = (type) => {
   }
   if (type === "narrow") {
     return css`
-      width: 30vw;
+      width: 40vw;
     `;
   }
   return css`
