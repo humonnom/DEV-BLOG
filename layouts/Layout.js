@@ -14,8 +14,8 @@ export const HeadConf = () => {
   return (
     <Head>
       <title>Jueun park&apos;s Dev blog</title>
-      <meta name='author' content='humonnom' />
-      <link rel='icon' href='/favicon.ico' />
+      <meta name="author" content="humonnom" />
+      <link rel="icon" href="/favicon.ico" />
     </Head>
   );
 };
@@ -29,7 +29,7 @@ export const Nav = () => {
 
   return (
     <div css={[NavStyle]}>
-      <button type='button' onClick={handleClick}>
+      <button type="button" onClick={handleClick}>
         {!clicked && <p>~</p>}
         {clicked && <p>-</p>}
       </button>
@@ -38,17 +38,17 @@ export const Nav = () => {
         <ul css={NavListStyle}>
           <li>
             <p>
-              <Link href='/blog'>DEV BLOG</Link>
+              <Link href="/blog">DEV BLOG</Link>
             </p>
           </li>
           <li>
             <p>
-              <Link href='/projects'>PROJECTS</Link>
+              <Link href="/projects">PROJECTS</Link>
             </p>
           </li>
           <li>
             <p>
-              <Link href='/contact'>CONTACT</Link>
+              <Link href="/contact">CONTACT</Link>
             </p>
           </li>
         </ul>
@@ -61,8 +61,8 @@ export const Footer = () => {
   return (
     <footer css={FooterStyle}>
       <p>
-        by <a href='https://github.com/humonnom'>@humonnom</a> 2022,{" "}
-        <Link href='/about'>about this site</Link>
+        by <a href="https://github.com/humonnom">@humonnom</a> 2022,{" "}
+        <Link href="/about">about this site</Link>
       </p>
     </footer>
   );
@@ -97,7 +97,7 @@ const ContainerStyle = css`
 `;
 
 const MainStyle = css`
-  min-height: 100vh;
+  min-height: 70vh;
   padding: 4rem 0;
   ${FlexCenter}
 `;
@@ -114,9 +114,10 @@ const FooterStyle = css`
 const NavStyle = css`
   display: flex;
   position: relative;
+  top: 5vh;
+  right: 5vw;
   justify-content: end;
   align-items: center;
-  margin-top: 20px;
   button {
     display: flex;
     justify-content: center;
