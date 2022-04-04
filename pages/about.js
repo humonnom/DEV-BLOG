@@ -5,77 +5,108 @@ import { Container } from "../layouts/Layout";
 import React from "react";
 import { css } from "@emotion/react";
 import { Square } from "../components/square";
-import { FlexCenter } from "../styles/global";
+import {
+  BORDER_STYLE,
+  COLOR_STYLE,
+  FlexCenter,
+  FONT_SIZE,
+} from "../styles/global";
+import { useGetBorderRadius } from "../hooks/utils";
 
 export default function About() {
   const Contents = (
     <div css={[FlexCenter]}>
-      <Title inside="About this site" />
+      <div css={PageTitle}>
+        <Title inside="About this site" />
+      </div>
       <div css={[FlexCenter]}>
-        <div css={[SectionStyle, PebbleContainer]}>
-          <p>:: pebble ::</p>
-          <div>
-            <WhitePebble inside="this is white pebble" />
-          </div>
-          <div>
-            <WhitePebble inside="default pebble" />
-          </div>
-          <div>
-            <BlackPebble inside="normal black pebble" />
-          </div>
-          <div>
-            <BlackPebble
-              inside="i have action"
-              action={() => alert("you clicked black pebble x)")}
-            />
-          </div>
-          <div>
-            <WhitePebble
-              inside="pebble with guide"
-              guide="this is guide message"
-            />
+        <div css={[SectionStyle, useGetBorderRadius()]}>
+          <div css={PebbleContainer}>
+            <p css={SectionTitleStyle}>:: pebble ::</p>
+            <div>
+              <WhitePebble inside="this is white pebble" />
+            </div>
+            <div>
+              <WhitePebble inside="default pebble" />
+            </div>
+            <div>
+              <BlackPebble inside="normal black pebble" />
+            </div>
+            <div>
+              <BlackPebble
+                inside="i have action"
+                action={() => alert("you clicked black pebble x)")}
+              />
+            </div>
+            <div>
+              <WhitePebble
+                inside="pebble with guide"
+                guide="this is guide message"
+              />
+            </div>
           </div>
         </div>
 
-        <div css={SectionStyle}>
-          <p>:: title ::</p>
+        <div css={[SectionStyle, useGetBorderRadius()]}>
+          <p css={SectionTitleStyle}>:: title ::</p>
           <div>
-            <Title inside="Hello" />
+            <Title inside="Hello" white={true} />
+          </div>
+          <div>
+            <Title
+              inside="this is covered type"
+              hasBorder={true}
+              white={true}
+            />
           </div>
           <div>
             <Title inside="this is covered type" hasBorder={true} />
           </div>
         </div>
-        <div css={SectionStyle}>
-          <p>:: textbox ::</p>
+        <div css={[SectionStyle, useGetBorderRadius()]}>
+          <p css={SectionTitleStyle}>:: textbox ::</p>
+
           <div>
-            <TextBox
-              widthType="wide"
-              inside="
-          원숭이 엉덩이는 빨~개/ 빨가면 사과/ 사과는 맛있어/ 맛있으면 바나나/ 바나나는 길어/ 길면 기차/ 기차는 빨라/ 빠르면 비행기/ 비행기는 높아 /높으면 백두산"
-            />
+            <TextBox inside="simple text box" />
           </div>
           <div>
             <TextBox
               ascii={true}
-              inside="+----+     +----+     +----+     
-|  🐒   | => | ❤️   | => |  🍎   |
-+----+     +----+     +----+    "
+              white={true}
+              inside="t h i s       i s       
+              a s c i i       c o d e       b o x"
+            />
+          </div>
+          <div>
+            <TextBox
+              widthType="narrow"
+              inside="
+          narrow one"
+            />
+          </div>
+          <div>
+            <TextBox
+              widthType="wide"
+              white={true}
+              inside="
+          wide one"
             />
           </div>
         </div>
-        <div css={SectionStyle}>
-          <p>:: image ::</p>
-          <ImageBox />
+        <div css={[SectionStyle, useGetBorderRadius()]}>
+          <p css={SectionTitleStyle}>:: image ::</p>
+          <ImageBox white={true} />
         </div>
-        <div css={SectionStyle}>
-          <p>:: square ::</p>
+        <div css={[SectionStyle, useGetBorderRadius()]}>
+          <p css={SectionTitleStyle}>:: square ::</p>
           <Square
-            title="Square"
+            title="Article"
             link="/about"
             tags={["js", "react"]}
             guide="누르면 자세한 내용을 볼 수 있습니다."
+            white={true}
           />
+          <Square title="Article2" link="/about" tags={["js", "react"]} />
         </div>
       </div>
     </div>
@@ -85,16 +116,29 @@ export default function About() {
 const SectionStyle = css`
   ${FlexCenter}
   height: 100%;
-  max-width: 50vw;
-  margin: 15px;
+  max-width: 450px;
+  padding: 100px 0px;
+  margin: 0px 0px;
+  border: ${BORDER_STYLE.white};
+  background-color: black;
   div {
     margin: 5px 0px;
   }
 `;
 
+const SectionTitleStyle = css`
+  color: ${COLOR_STYLE.white};
+  font-size: ${FONT_SIZE.medium};
+`;
+
 const PebbleContainer = css`
+  ${FlexCenter}
   width: 30vw;
   div {
     width: 20vw;
   }
+`;
+
+const PageTitle = css`
+  margin: 30px;
 `;

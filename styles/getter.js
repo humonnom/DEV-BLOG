@@ -14,15 +14,15 @@ export const getPadding = (height, width) => {
 export const getWidth = (type) => {
   if (type === "wide") {
     return css`
-      width: 80vw;
+      width: 300px;
     `;
   }
   if (type === "narrow") {
     return css`
-      width: 40vw;
+      width: 200px;
     `;
   }
   return css`
-    width: 50vw;
+    width: 250px;
   `;
 };

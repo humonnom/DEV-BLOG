@@ -1,15 +1,24 @@
 import React from "react";
 import Image from "next/image";
 import { css } from "@emotion/react";
-import { BORDER_STYLE, COLOR_STYLE, FONT_SIZE } from "../styles/global";
+import { COLOR_STYLE } from "../styles/global";
 import { getPadding, getWidth } from "../styles/getter";
+import { getBackground, getBorder, getColor } from "../hooks/utils";
 
-export const TextBox = ({ inside, padding, widthType, ascii }) => {
+export const TextBox = ({ inside, padding, widthType, ascii, white }) => {
   const paddingH = 5;
   const paddingW = padding || 10;
   return (
     <div
-      css={[TextBoxStyle, getPadding(paddingH, paddingW), getWidth(widthType)]}>
+      css={[
+        TextBoxStyle,
+        getColor(white),
+        getBorder(white),
+        getPadding(paddingH, paddingW),
+        getBackground(white),
+        getWidth(widthType),
+      ]}
+    >
       <p css={[TextStyle(ascii)]}>{inside}</p>
     </div>
   );
@@ -17,13 +26,12 @@ export const TextBox = ({ inside, padding, widthType, ascii }) => {
 
 const TextBoxStyle = css`
   display: flex;
-  border: ${BORDER_STYLE.black};
 `;
 
 const TextStyle = (ascii) => {
   if (ascii) {
     return css`
-      white-space: pre;
+      white-space: pre-wrap;
     `;
   }
   return css`
@@ -31,14 +39,14 @@ const TextStyle = (ascii) => {
   `;
 };
 
-export const ImageBox = (src) => {
+export const ImageBox = ({ white }) => {
   return (
-    <div css={ImageBoxStyle}>
+    <div css={[ImageBoxStyle, getBorder(white)]}>
       <Image
-        src='https://onitbucket.s3.ap-northeast-2.amazonaws.com/image/25%222022-03-15T15:53:22.612Z%22.jpeg'
-        alt='banana tree'
-        layout='fill'
-        objectFit='cover'
+        src="https://onitbucket.s3.ap-northeast-2.amazonaws.com/image/25%222022-03-15T15:53:22.612Z%22.jpeg"
+        alt="banana tree"
+        layout="fill"
+        objectFit="cover"
       />
     </div>
   );
@@ -48,7 +56,6 @@ const ImageBoxStyle = css`
   display: block;
   background-color: ${COLOR_STYLE.paleGrey};
   position: relative;
-  width: 80vw;
-  height: 40vh;
-  border: ${BORDER_STYLE.black};
+  width: 300px;
+  height: 350px;
 `;

@@ -8,7 +8,7 @@ export const Pebble = ({ inside, action, type, guide }) => {
   const onClick = action ? action : () => {};
 
   const comp = (
-    <button type='button' onClick={onClick}>
+    <button type="button" onClick={onClick}>
       {text}
     </button>
   );
@@ -23,10 +23,10 @@ export const Pebble = ({ inside, action, type, guide }) => {
 };
 
 export const WhitePebble = ({ inside, action, guide }) => {
-  return <Pebble inside={inside} action={action} type='white' guide={guide} />;
+  return <Pebble inside={inside} action={action} type="white" guide={guide} />;
 };
 export const BlackPebble = ({ inside, action, guide }) => {
-  return <Pebble inside={inside} action={action} type='black' guide={guide} />;
+  return <Pebble inside={inside} action={action} type="black" guide={guide} />;
 };
 
 const PebbleBasicStyle = css`
@@ -45,6 +45,7 @@ const WhitePebbleStyle = css`
 
 const BlackPebbleStyle = css`
   background-color: ${COLOR_STYLE.black};
+  border: ${BORDER_STYLE.white};
   ${PebbleBasicStyle}
 `;
 

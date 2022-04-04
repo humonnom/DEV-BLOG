@@ -57,6 +57,7 @@ export const COLOR_STYLE = {
 
 export const BORDER_STYLE = {
   black: `solid 1px ${COLOR_STYLE.black}`,
+  white: `solid 1px ${COLOR_STYLE.white}`,
 };
 
 export const FlexCenter = css`
