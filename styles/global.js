@@ -27,6 +27,15 @@ export const globalStyles = (
           list-style: none;
           padding-left: 0px;
         }
+        input {
+          border: none;
+        }
+        input:focus {
+          outline: none;
+        }
+        input:-webkit-autofill {
+          -webkit-box-shadow: 0 0 0 1000px white inset;
+        }
       }
     `}
   />

@@ -39,15 +39,11 @@ const TextStyle = (ascii) => {
   `;
 };
 
-export const ImageBox = ({ white }) => {
+export const ImageBox = ({ white, src }) => {
+  // const src =
   return (
     <div css={[ImageBoxStyle, getBorder(white)]}>
-      <Image
-        src="https://onitbucket.s3.ap-northeast-2.amazonaws.com/image/25%222022-03-15T15:53:22.612Z%22.jpeg"
-        alt="banana tree"
-        layout="fill"
-        objectFit="cover"
-      />
+      <Image src={src} alt="banana tree" layout="fill" objectFit="cover" />
     </div>
   );
 };

@@ -3,7 +3,7 @@ import { css } from "@emotion/react";
 import { BORDER_STYLE, COLOR_STYLE } from "../styles/global";
 
 export const useGetView = () => {
-  const [width, setWidth] = useState(0);
+  const [width, setWidth] = useState(800);
 
   const handleWindowSizeChange = () => {
     setWidth(window.innerWidth);
@@ -22,7 +22,7 @@ export const useGetView = () => {
   return { isMobile };
 };
 
-export const useGetRamdom = (min, max) => {
+export const getRandom = (min, max) => {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min)) + min;
@@ -62,11 +62,11 @@ export const getBackground = (white) => {
   }
 };
 
-export const useGetBorderRadius = () => {
-  const left = useGetRamdom(40, 150);
-  const right = useGetRamdom(40, 150);
-  const top = useGetRamdom(40, 150);
-  const bottom = useGetRamdom(40, 150);
+export const getRandomBorderRadius = () => {
+  const left = getRandom(40, 150);
+  const right = getRandom(40, 150);
+  const top = getRandom(40, 150);
+  const bottom = getRandom(40, 150);
   return css`
     border-radius: ${top}px ${right}px ${bottom}px ${left}px;
   `;

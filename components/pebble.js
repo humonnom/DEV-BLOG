@@ -3,13 +3,16 @@ import React, { useMemo } from "react";
 import useGuide from "../hooks/useGuide";
 import { BORDER_STYLE, COLOR_STYLE, FlexCenter } from "../styles/global";
 
-export const Pebble = ({ inside, action, type, guide }) => {
+export const Pebble = ({ inside, action, type, guide, baby }) => {
   const text = <p css={TextStyle(type)}>{inside}</p> || "pebble";
   const onClick = action ? action : () => {};
 
   const comp = (
     <button type="button" onClick={onClick}>
-      {text}
+      <div css={PebbleWithBaby}>
+        {text}
+        {baby && baby}
+      </div>
     </button>
   );
 
@@ -22,11 +25,27 @@ export const Pebble = ({ inside, action, type, guide }) => {
   }
 };
 
-export const WhitePebble = ({ inside, action, guide }) => {
-  return <Pebble inside={inside} action={action} type="white" guide={guide} />;
+export const WhitePebble = ({ inside, action, guide, baby }) => {
+  return (
+    <Pebble
+      inside={inside}
+      action={action}
+      type="white"
+      guide={guide}
+      baby={baby}
+    />
+  );
 };
-export const BlackPebble = ({ inside, action, guide }) => {
-  return <Pebble inside={inside} action={action} type="black" guide={guide} />;
+export const BlackPebble = ({ inside, action, guide, baby }) => {
+  return (
+    <Pebble
+      inside={inside}
+      action={action}
+      type="black"
+      guide={guide}
+      baby={baby}
+    />
+  );
 };
 
 const PebbleBasicStyle = css`
@@ -68,3 +87,10 @@ const TextStyle = (type) => {
     `;
   }
 };
+
+const PebbleWithBaby = css`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;

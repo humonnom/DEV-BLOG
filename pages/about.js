@@ -11,7 +11,8 @@ import {
   FlexCenter,
   FONT_SIZE,
 } from "../styles/global";
-import { useGetBorderRadius } from "../hooks/utils";
+import { getRandomBorderRadius } from "../hooks/utils";
+import { SectionStyle, SectionTitleStyle } from "../styles/section";
 
 export default function About() {
   const Contents = (
@@ -20,7 +21,7 @@ export default function About() {
         <Title inside="About this site" />
       </div>
       <div css={[FlexCenter]}>
-        <div css={[SectionStyle, useGetBorderRadius()]}>
+        <div css={[SectionStyle, getRandomBorderRadius()]}>
           <div css={PebbleContainer}>
             <p css={SectionTitleStyle}>:: PEBBLE ::</p>
             <div>
@@ -47,7 +48,7 @@ export default function About() {
           </div>
         </div>
 
-        <div css={[SectionStyle, useGetBorderRadius()]}>
+        <div css={[SectionStyle, getRandomBorderRadius()]}>
           <p css={SectionTitleStyle}>:: TITLE ::</p>
           <div>
             <Title inside="Hello" white={true} />
@@ -63,7 +64,7 @@ export default function About() {
             <Title inside="this is covered type" hasBorder={true} />
           </div>
         </div>
-        <div css={[SectionStyle, useGetBorderRadius()]}>
+        <div css={[SectionStyle, getRandomBorderRadius()]}>
           <p css={SectionTitleStyle}>:: TEXT BOX ::</p>
 
           <div>
@@ -93,11 +94,14 @@ export default function About() {
             />
           </div>
         </div>
-        <div css={[SectionStyle, useGetBorderRadius()]}>
+        <div css={[SectionStyle, getRandomBorderRadius()]}>
           <p css={SectionTitleStyle}>:: IMAGE BOX ::</p>
-          <ImageBox white={true} />
+          <ImageBox
+            white={true}
+            src="https://onitbucket.s3.ap-northeast-2.amazonaws.com/image/25%222022-03-15T15:53:22.612Z%22.jpeg"
+          />
         </div>
-        <div css={[SectionStyle, useGetBorderRadius()]}>
+        <div css={[SectionStyle, getRandomBorderRadius()]}>
           <p css={SectionTitleStyle}>:: SQUARE ::</p>
           <Square
             title="Article"
@@ -113,24 +117,6 @@ export default function About() {
   );
   return <Container contents={Contents} />;
 }
-const SectionStyle = css`
-  ${FlexCenter}
-  height: 100%;
-  max-width: 450px;
-  padding: 70px 0px 100px 0px;
-  margin: 0px 0px;
-  border: ${BORDER_STYLE.white};
-  background-color: black;
-  div {
-    margin: 5px 0px;
-  }
-`;
-
-const SectionTitleStyle = css`
-  color: ${COLOR_STYLE.white};
-  font-size: ${FONT_SIZE.medium};
-  margin-bottom: 50px;
-`;
 
 const PebbleContainer = css`
   ${FlexCenter}
