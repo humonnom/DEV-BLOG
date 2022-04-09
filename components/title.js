@@ -1,11 +1,6 @@
 import React from "react";
 import { css } from "@emotion/react";
-import {
-  BORDER_STYLE,
-  COLOR_STYLE,
-  FlexCenter,
-  FONT_SIZE,
-} from "../styles/global";
+import { FONT_SIZE } from "../styles/global";
 import { getPadding } from "../styles/getter";
 import { getBackground, getBorder, getColor } from "../hooks/utils";
 

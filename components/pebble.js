@@ -4,12 +4,12 @@ import useGuide from "../hooks/useGuide";
 import { BORDER_STYLE, COLOR_STYLE, FlexCenter } from "../styles/global";
 
 export const Pebble = ({ inside, action, type, guide, baby }) => {
-  const text = <p css={TextStyle(type)}>{inside}</p> || "pebble";
+  const text = <p>{inside}</p> || "pebble";
   const onClick = action ? action : () => {};
 
   const comp = (
     <button type="button" onClick={onClick}>
-      <div css={PebbleWithBaby}>
+      <div css={[PebbleWithBaby, TextStyle(type)]}>
         {text}
         {baby && baby}
       </div>

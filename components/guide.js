@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import { BORDER_STYLE, COLOR_STYLE, FONT_SIZE } from "../styles/global";
 
 export const Guide = ({ inside, x, y }) => {
@@ -35,7 +35,7 @@ const GuideContainerStyle = (x, y) => {
     align-items: center;
     width: 150px;
     height: 17px;
-    z-index: 2;
+    z-index: 100;
     top: ${y}px;
     left: ${x}px;
     border: ${BORDER_STYLE.black};

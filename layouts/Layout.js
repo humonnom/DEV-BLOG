@@ -2,13 +2,14 @@
 import Head from "next/head";
 import Link from "next/link";
 import { css } from "@emotion/react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import {
   BORDER_STYLE,
   COLOR_STYLE,
   FlexCenter,
   FONT_SIZE,
 } from "../styles/global";
+import { getNavDesc, getNavList } from "../hooks/utils";
 
 export const HeadConf = () => {
   return (
@@ -20,13 +21,29 @@ export const HeadConf = () => {
   );
 };
 
-export const Nav = () => {
+export const Nav = ({ usage }) => {
   const [clicked, setClicked] = useState(false);
 
   const handleClick = () => {
     setClicked(!clicked);
   };
-
+  const desc = getNavDesc(usage);
+  const linkList = useMemo(() => {
+    const list = getNavList(usage);
+    return (
+      <ul css={NavListStyle}>
+        {list.map((link) => {
+          return (
+            <li key={Math.random()}>
+              <p>
+                <Link href={link.href}>{link.label}</Link>
+              </p>
+            </li>
+          );
+        })}
+      </ul>
+    );
+  }, [usage]);
   return (
     <div css={[NavStyle]}>
       <button type="button" css={NavButtonStyle} onClick={handleClick}>
@@ -34,24 +51,8 @@ export const Nav = () => {
         {clicked && <p>-</p>}
       </button>
       <div css={[getDisplay(clicked), NavListContainerStyle]}>
-        <p css={NavTitleStyle}>다른 페이지로 가기</p>
-        <ul css={NavListStyle}>
-          <li>
-            <p>
-              <Link href="/blog">DEV BLOG</Link>
-            </p>
-          </li>
-          <li>
-            <p>
-              <Link href="/projects">PROJECTS</Link>
-            </p>
-          </li>
-          <li>
-            <p>
-              <Link href="/contact">CONTACT</Link>
-            </p>
-          </li>
-        </ul>
+        <p css={NavTitleStyle}>{desc}</p>
+        {linkList}
       </div>
     </div>
   );
@@ -68,19 +69,19 @@ export const Footer = () => {
   );
 };
 
-const Header = () => {
+const Header = ({ usage }) => {
   return (
     <>
-      <Nav />
+      <Nav usage={usage} />
     </>
   );
 };
 
-export const Container = ({ contents }) => {
+export const Container = ({ contents, usage }) => {
   return (
     <div css={ContainerStyle}>
       <HeadConf />
-      <Header />
+      <Header usage={usage} />
       <main css={MainStyle}>{contents}</main>
       <Footer />
     </div>
@@ -112,7 +113,8 @@ const FooterStyle = css`
 `;
 
 const NavStyle = css`
-  position: relative;
+  position: sticky;
+  top: 0;
   display: flex;
   justify-content: end;
   align-items: center;
@@ -154,7 +156,7 @@ const NavListContainerStyle = css`
   align-items: center;
   height: 180px;
   width: 140px;
-  z-index: 2;
+  z-index: 99;
   top: 55px;
   right: 55px;
   border: ${BORDER_STYLE.black};
@@ -179,6 +181,7 @@ const NavListStyle = css`
     p {
       padding: 11px;
       margin: 0px;
+      text-align: center;
     }
   }
 `;

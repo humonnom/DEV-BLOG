@@ -9,9 +9,6 @@ export const SectionStyle = css`
   margin: 0px 0px;
   border: ${BORDER_STYLE.white};
   background-color: black;
-  div {
-    margin: 5px 0px;
-  }
 `;
 
 export const SectionTitleStyle = css`

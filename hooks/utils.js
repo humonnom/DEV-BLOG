@@ -71,3 +71,53 @@ export const getRandomBorderRadius = () => {
     border-radius: ${top}px ${right}px ${bottom}px ${left}px;
   `;
 };
+
+export const getNavList = (usage) => {
+  if (usage === "movieMateTemplate") {
+    return [
+      { href: "/movie-mate", label: "HOME" },
+      { href: "#movie", label: "Available Movies" },
+      { href: "#appointment", label: "Confirmed Appointment" },
+      { href: "#log", label: "Log" },
+    ];
+  } else if (usage === "movieMate") {
+    return [
+      { href: "/movie-mate", label: "HOME" },
+      { href: "/movie-mate/admin", label: "ADMIN" },
+    ];
+  }
+  return [
+    { href: "/blog", label: "DEV BLOG" },
+    { href: "/projects", label: "PROJECTS" },
+    { href: "/contact", label: "CONTACT" },
+  ];
+};
+
+export const getNavDesc = (usage) => {
+  if (usage === "movieMateTemplate") {
+    return "-";
+  } else if (usage === "movieMate") {
+    return "-";
+  }
+  return "다른 페이지로 가기";
+};
+
+export const getAlphabets = () => {
+  return "abcdefghijklmnopqrstuvwxyz".split("");
+};
+
+export const isAlpha = (target) => {
+  const alphabets = getAlphabets();
+  if (alphabets.includes(target)) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+export const isOutOfDate = (date) => {
+  const today = new Date();
+  const target = new Date(date);
+
+  return today > target;
+};
