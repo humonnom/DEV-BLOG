@@ -15,8 +15,8 @@ export const HeadConf = () => {
   return (
     <Head>
       <title>Jueun park&apos;s Dev blog</title>
-      <meta name="author" content="humonnom" />
-      <link rel="icon" href="/favicon.ico" />
+      <meta name='author' content='humonnom' />
+      <link rel='icon' href='/favicon.ico' />
     </Head>
   );
 };
@@ -46,7 +46,7 @@ export const Nav = ({ usage }) => {
   }, [usage]);
   return (
     <div css={[NavStyle]}>
-      <button type="button" css={NavButtonStyle} onClick={handleClick}>
+      <button type='button' css={NavButtonStyle} onClick={handleClick}>
         {!clicked && <p>~</p>}
         {clicked && <p>-</p>}
       </button>
@@ -62,8 +62,8 @@ export const Footer = () => {
   return (
     <footer css={FooterStyle}>
       <p>
-        by <a href="https://github.com/humonnom">@humonnom</a> 2022,{" "}
-        <Link href="/about">about this site</Link>
+        by <a href='https://github.com/humonnom'>@humonnom</a> 2022,{" "}
+        <Link href='/about'>about this site</Link>
       </p>
     </footer>
   );
@@ -119,6 +119,7 @@ const NavStyle = css`
   justify-content: end;
   align-items: center;
   height: 10vh;
+  z-index: 99;
 `;
 
 const NavButtonStyle = css`
