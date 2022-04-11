@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useInput } from "../../../components/input";
 import { BlackPebble, WhitePebble } from "../../../components/pebble";
 import { useRequest } from "../../../hooks/useRequest";
@@ -153,6 +153,20 @@ export default function Movie() {
     );
   }, [state, fillButtons, confirmButtons, postButtons]);
 
+  const remove = useCallback(
+    (found) => {
+      setShow(show.filter((slug) => slug != found));
+    },
+    [setShow, show]
+  );
+
+  const add = useCallback(
+    (found) => {
+      setShow([...show, found]);
+    },
+    [setShow, show]
+  );
+
   const slugsIcons = useMemo(() => {
     if (slugsList) {
       const alphabets = getAlphabets();
@@ -161,16 +175,13 @@ export default function Movie() {
           {alphabets.map((alphabet) => {
             const found = slugsList.find((element) => element === alphabet);
             if (found) {
-              const remove = () =>
-                setShow(show.filter((slug) => slug != found));
-              const add = () => setShow([...show, found]);
               return (
                 <div css={SlugsIconStyle} key={found}>
                   {show.includes(found) && (
-                    <BlackPebble inside={found} action={remove} />
+                    <BlackPebble inside={found} action={() => remove(found)} />
                   )}
                   {!show.includes(found) && (
-                    <WhitePebble inside={found} action={add} />
+                    <WhitePebble inside={found} action={() => add(found)} />
                   )}
                 </div>
               );
@@ -185,12 +196,7 @@ export default function Movie() {
         </div>
       );
     }
-  }, [slugsList, setShow, show]);
-
-  useEffect(() => {
-    console.log(show);
-    console.log(show.toString());
-  }, [show]);
+  }, [slugsList, show, add, remove]);
 
   const Contents = useMemo(() => {
     return (
@@ -219,15 +225,15 @@ const SubmitStyle = css`
 `;
 
 const SlugsIconsContainerStyle = css`
-  width: 30%;
+  width: 35%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: minmax(15px, auto);
+  grid-auto-rows: minmax(20px, auto);
   margin-top: 30px;
 `;
 
 const SlugsIconStyle = css`
-  width: 30px;
-  height: 15px;
-  margin: 3px;
+  width: 35px;
+  height: 20px;
+  margin: 3px auto;
 `;

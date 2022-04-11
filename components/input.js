@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { css } from "@emotion/react";
 
 export const useInput = ({ type }) => {

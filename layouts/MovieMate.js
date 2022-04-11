@@ -9,7 +9,6 @@ import { isOutOfDate } from "../hooks/utils";
 import { FlexCenter, FONT_SIZE } from "../styles/global";
 
 export function MovieMate({ member }) {
-  console.log(member);
   const { comp, value } = useInput({ type: "text" });
   const movieList = useGetMovieList();
   const correct = useMemo(() => {
