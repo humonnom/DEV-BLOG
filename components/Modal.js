@@ -47,6 +47,7 @@ const getVisiblity = (visible) => {
 
 const ModalOverlay = css`
   box-sizing: border-box;
+  pointer-events: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -64,7 +65,7 @@ const ModalWrapper = css`
   bottom: 0;
   left: 0;
   z-index: 1000;
-  overflow: auto;
+  overflow: scroll;
   outline: 0;
 `;
 const ModalInner = css`
@@ -73,7 +74,6 @@ const ModalInner = css`
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
   background-color: #fff;
   border-radius: 10px;
-  width: 90%;
   top: 50%;
   transform: translateY(-50%);
   margin: 0 auto;
@@ -85,16 +85,22 @@ const ContentsContainer = css`
 `;
 
 const CloseButtonContainer = css`
+  position: sticky;
+  top: 0;
   display: flex;
-  justify-content: center;
+  justify-content: end;
   align-items: center;
+  height: 10vh;
   width: 100%;
 `;
+
 const CloseButtonStyle = css`
-  display: flex;
   position: absolute;
-  top: 0px;
+  justify-content: center;
+  align-items: center;
   right: 10px;
-  width: 35px;
-  height: 20px;
+  top: 10px;
+  display: flex;
+  width: 40px;
+  height: 30px;
 `;

@@ -33,7 +33,7 @@ function Index() {
         )}
         {verified && (
           <div css={LinkListStyle}>
-            <div>
+            <div css={LinkStyle}>
               <WhitePebble
                 inside="멤버추가"
                 action={() => {
@@ -52,7 +52,7 @@ function Index() {
                 )}
               </>
             </div>
-            <div>
+            <div css={LinkStyle}>
               <WhitePebble
                 inside="영화추가"
                 action={() => {
@@ -71,7 +71,7 @@ function Index() {
                 )}
               </>
             </div>
-            <div>
+            <div css={LinkStyle}>
               <WhitePebble
                 inside="예약관리"
                 action={() => {
@@ -116,8 +116,10 @@ const LinkListStyle = css`
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  div {
-    padding: 3px 0px;
-    margin: 5px auto;
-  }
+  width: 100%;
+`;
+
+const LinkStyle = css`
+  margin: 5px auto;
+  width: 30%;
 `;

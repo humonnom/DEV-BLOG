@@ -212,7 +212,7 @@ export default function MovieModalContents() {
 
 const InputStyle = css`
   width: 300px;
-  margin: 11px auto;
+  margin: 5px auto;
 `;
 
 const SubmitStyle = css`
@@ -224,15 +224,14 @@ const SubmitStyle = css`
 `;
 
 const SlugsIconsContainerStyle = css`
-  width: 35%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: minmax(20px, auto);
-  margin-top: 30px;
+  margin-top: 10px;
 `;
 
 const SlugsIconStyle = css`
-  width: 35px;
-  height: 20px;
-  margin: 3px auto;
+  width: 30px;
+  height: 15px;
+  margin: 3px;
 `;

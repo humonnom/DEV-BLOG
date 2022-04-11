@@ -27,21 +27,39 @@ export function MovieMate({ member }) {
           const available = movieList.filter(
             (element) => element.reserv.reserved === false
           );
-          return <MoviesComp movies={available} category={category} />;
+          return (
+            <MoviesComp
+              slug={member.slug}
+              movies={available}
+              category={category}
+            />
+          );
         } else if (category === "appointment") {
           const appointment = movieList.filter(
             (element) =>
               element.reserv.with === member.slug &&
               !isOutOfDate(element.info.date)
           );
-          return <MoviesComp movies={appointment} category={category} />;
+          return (
+            <MoviesComp
+              slug={member.slug}
+              movies={appointment}
+              category={category}
+            />
+          );
         } else if (category === "log") {
           const appointment = movieList.filter(
             (element) =>
               element.reserv.with === member.slug &&
               isOutOfDate(element.info.date)
           );
-          return <MoviesComp movies={appointment} category={category} />;
+          return (
+            <MoviesComp
+              slug={member.slug}
+              movies={appointment}
+              category={category}
+            />
+          );
         }
       } else {
         return <></>;
