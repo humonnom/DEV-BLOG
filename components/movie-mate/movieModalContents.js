@@ -1,14 +1,13 @@
 import { css } from "@emotion/react";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { useInput } from "../../../components/input";
-import { BlackPebble, WhitePebble } from "../../../components/pebble";
-import { useRequest } from "../../../hooks/useRequest";
-import { Container } from "../../../layouts/Layout";
-import { FONT_SIZE } from "../../../styles/global";
-import { useGetSlugsList } from "../../../hooks/movie_mate";
-import { getAlphabets } from "../../../hooks/utils";
+import { useGetSlugsList } from "../../hooks/movie_mate";
+import { useRequest } from "../../hooks/useRequest";
+import { getAlphabets } from "../../hooks/utils";
+import { FONT_SIZE } from "../../styles/global";
+import { useInput } from "../input";
+import { BlackPebble, WhitePebble } from "../pebble";
 
-export default function Movie() {
+export default function MovieModalContents() {
   const [state, setState] = useState("fill");
   const [show, setShow] = useState([]);
   const title = useInput({ type: "text" });
@@ -208,7 +207,7 @@ export default function Movie() {
     );
   }, [slugsIcons, infos, buttons]);
 
-  return <Container contents={Contents} usage="movieMate" />;
+  return Contents;
 }
 
 const InputStyle = css`

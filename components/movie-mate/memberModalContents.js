@@ -1,14 +1,13 @@
 import { css } from "@emotion/react";
 import Link from "next/link";
 import React, { useEffect, useMemo, useState } from "react";
-import { useInput } from "../../../components/input";
-import { BlackPebble, WhitePebble } from "../../../components/pebble";
-import { useGetSlugsList } from "../../../hooks/movie_mate";
-import { useRequest } from "../../../hooks/useRequest";
-import { Container } from "../../../layouts/Layout";
-import { FONT_SIZE } from "../../../styles/global";
+import { useInput } from "../input";
+import { BlackPebble, WhitePebble } from "../pebble";
+import { useGetSlugsList } from "../../hooks/movie_mate";
+import { useRequest } from "../../hooks/useRequest";
+import { FONT_SIZE } from "../../styles/global";
 
-export default function Member() {
+export default function MemberModalContents() {
   const [state, setState] = useState("fill");
   const { comp: nameComp, value: nameValue } = useInput({ type: "text" });
   const { comp: emailComp, value: emailValue } = useInput({ type: "text" });
@@ -181,12 +180,12 @@ export default function Member() {
     return <>새로고침 해주세요</>;
   }, [state, fillComp, confirmComp, postComp]);
 
-  return <Container contents={Contents} usage="movieMate" />;
+  return Contents;
 }
 
 const InputStyle = css`
   width: 300px;
-  margin: 11px auto;
+  margin: 0 auto;
 `;
 
 const SubmitStyle = css`
