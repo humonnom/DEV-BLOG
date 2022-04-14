@@ -118,6 +118,5 @@ export const isAlpha = (target) => {
 export const isOutOfDate = (date) => {
   const today = new Date();
   const target = new Date(date);
-
   return today > target;
 };

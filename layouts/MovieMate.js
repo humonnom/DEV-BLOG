@@ -25,7 +25,9 @@ export function MovieMate({ member }) {
       if (movieList) {
         if (category === "movie") {
           const available = movieList.filter(
-            (element) => element.reserv.reserved === false
+            (element) =>
+              element.reserv.reserved === false &&
+              !isOutOfDate(element.info.date)
           );
           return (
             <MoviesComp
