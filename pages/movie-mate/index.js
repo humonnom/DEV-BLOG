@@ -1,5 +1,6 @@
 import { css } from "@emotion/react";
 import Link from "next/link";
+import { useMemo } from "react";
 import { BlackPebble, WhitePebble } from "../../components/pebble";
 import { getAlphabets } from "../../hooks/utils";
 import { Container } from "../../layouts/Layout";
@@ -9,39 +10,44 @@ import db from "../../utils/db";
 const Posts = (props) => {
   const alphabets = getAlphabets();
   const { membersData } = props;
-  const Contents = (
-    <div css={ContentsStyle}>
-      <div css={ScreenStyle}>
-        <p>screen</p>
-      </div>
-      <div css={MemberListStyle}>
-        {alphabets.map((alphabet) => {
-          const found = membersData.find(
-            (element) => element.slug === alphabet
-          );
-          if (found) {
-            return (
-              <div css={MemberStyle} key={found.id}>
-                <Link href={`/movie-mate/${found.slug}`}>
+  const Contents = useMemo(() => {
+    return (
+      <div css={ContentsStyle}>
+        <div css={ScreenStyle}>
+          <p>screen</p>
+        </div>
+        <div css={MemberListStyle}>
+          {alphabets.map((alphabet) => {
+            const found = membersData.find(
+              (element) => element.slug === alphabet
+            );
+            if (found) {
+              return (
+                <div css={MemberStyle} key={found.id}>
+                  <Link href={`/movie-mate/${found.slug}`}>
+                    <a>
+                      <BlackPebble
+                        inside={found.slug}
+                        guide={found.info.name}
+                      />
+                    </a>
+                  </Link>
+                </div>
+              );
+            } else {
+              return (
+                <div css={MemberStyle} key={Math.random()}>
                   <a>
-                    <BlackPebble inside={found.slug} guide={found.info.name} />
+                    <WhitePebble inside={alphabet} guide="empty seat" />
                   </a>
-                </Link>
-              </div>
-            );
-          } else {
-            return (
-              <div css={MemberStyle} key={Math.random()}>
-                <a>
-                  <WhitePebble inside={alphabet} guide="empty seat" />
-                </a>
-              </div>
-            );
-          }
-        })}
+                </div>
+              );
+            }
+          })}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }, [membersData, alphabets]);
   return <Container contents={Contents} usage="movieMate" />;
 };
 
