@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
-import React, { useMemo, useState } from "react";
-import { WhitePebble } from "../../../components/pebble";
+import React, { useCallback, useMemo, useState } from "react";
+import { BlackPebble, WhitePebble } from "../../../components/pebble";
 import { Container } from "../../../layouts/Layout";
 import { useInput } from "../../../components/input";
 import Modal from "../../../components/Modal";
@@ -10,15 +10,14 @@ import RegisterModalContents from "../../../components/movie-mate/registerModalC
 
 function Index() {
   const { comp, value } = useInput({ type: "password" });
+  const [verified, setVerified] = useState(false);
   const [memberModalOn, setMemberModal] = useState(false);
   const [movieModalOn, setMovieModal] = useState(false);
   const [registerModalOn, setRegisterModal] = useState(false);
 
-  const verified = useMemo(() => {
+  const submit = useCallback(() => {
     if (value === process.env.NEXT_PUBLIC_ADMIN_PASSWORD) {
-      return true;
-    } else {
-      return false;
+      setVerified(true);
     }
   }, [value]);
 
@@ -28,7 +27,12 @@ function Index() {
         <h1>admin</h1>
         {!verified && (
           <div>
-            <WhitePebble inside="pw: " baby={<>{comp}</>} />
+            <div>
+              <WhitePebble inside="pw: " baby={<>{comp}</>} />
+            </div>
+            <div>
+              <BlackPebble inside="submit" action={submit} />
+            </div>
           </div>
         )}
         {verified && (
