@@ -2,7 +2,7 @@ import Link from "next/link";
 import useGuide from "../hooks/useGuide";
 import { Container } from "../layouts/Layout";
 export default function Home() {
-  const comp = <Link href="/about">WEBSITE</Link>;
+  const comp = <Link href="/website">WEBSITE</Link>;
   const guide = "← click to register";
   const { compWithGuide } = useGuide({ comp, guide });
   const Contents = (
