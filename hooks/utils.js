@@ -90,6 +90,7 @@ export const getNavList = (usage) => {
     { href: "/blog", label: "DEV BLOG" },
     { href: "/projects", label: "PROJECTS" },
     { href: "/contact", label: "CONTACT" },
+    { href: "/website", label: "WEBSITE" },
   ];
 };
 

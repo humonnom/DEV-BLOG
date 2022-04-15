@@ -4,17 +4,24 @@ import useGuide from "../hooks/useGuide";
 import { BORDER_STYLE, COLOR_STYLE, FlexCenter } from "../styles/global";
 
 export const Pebble = ({ inside, action, type, guide, baby }) => {
-  const text = <p>{inside}</p> || "pebble";
-  const onClick = action ? action : () => {};
+  const text = useMemo(() => {
+    return <p>{inside}</p> || "pebble";
+  }, [inside]);
 
-  const comp = (
-    <button type="button" onClick={onClick}>
-      <div css={[PebbleWithBaby, TextStyle(type)]}>
-        {text}
-        {baby && baby}
-      </div>
-    </button>
-  );
+  const onClick = useMemo(() => {
+    return action ? action : () => {};
+  }, [action]);
+
+  const comp = useMemo(() => {
+    return (
+      <button type="button" onClick={onClick}>
+        <div css={[PebbleWithBaby, TextStyle(type)]}>
+          {text}
+          {baby && baby}
+        </div>
+      </button>
+    );
+  }, [text, onClick, baby, type]);
 
   const { compWithGuide } = useGuide({ comp, style: PebbleStyle(type), guide });
 

@@ -5,12 +5,7 @@ import { Container } from "../layouts/Layout";
 import React from "react";
 import { css } from "@emotion/react";
 import { Square } from "../components/square";
-import {
-  BORDER_STYLE,
-  COLOR_STYLE,
-  FlexCenter,
-  FONT_SIZE,
-} from "../styles/global";
+import { FlexCenter } from "../styles/global";
 import { getRandomBorderRadius } from "../hooks/utils";
 import { SectionStyle, SectionTitleStyle } from "../styles/section";
 

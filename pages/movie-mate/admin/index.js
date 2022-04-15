@@ -107,6 +107,7 @@ function Index() {
     registerModalOn,
     movieModalOn,
     memberModalOn,
+    submit,
   ]);
   return <Container contents={Contents} usage="movieMate" />;
 }
