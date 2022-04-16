@@ -20,24 +20,24 @@ export default function About() {
           <div css={PebbleContainer}>
             <p css={SectionTitleStyle}>:: PEBBLE ::</p>
             <div>
-              <WhitePebble inside="this is white pebble" />
+              <WhitePebble inside="this is a white pebble" />
             </div>
             <div>
-              <WhitePebble inside="default pebble" />
+              <WhitePebble inside="a default pebble" />
             </div>
             <div>
-              <BlackPebble inside="normal black pebble" />
+              <BlackPebble inside="a normal black pebble" />
             </div>
             <div>
               <BlackPebble
-                inside="i have action"
-                action={() => alert("you clicked black pebble x)")}
+                inside="i have an action"
+                action={() => alert("you clicked a black pebble x)")}
               />
             </div>
             <div>
               <WhitePebble
-                inside="pebble with guide"
-                guide="this is guide message"
+                inside="a pebble with a guide"
+                guide="this is a guide message"
               />
             </div>
           </div>
@@ -46,30 +46,30 @@ export default function About() {
         <div css={[SectionStyle, getRandomBorderRadius()]}>
           <p css={SectionTitleStyle}>:: TITLE ::</p>
           <div>
-            <Title inside="Hello" white={true} />
+            <Title inside="Hello to you" white={true} />
           </div>
           <div>
             <Title
-              inside="this is covered type"
+              inside="this is a covered type title"
               hasBorder={true}
               white={true}
             />
           </div>
           <div>
-            <Title inside="this is covered type" hasBorder={true} />
+            <Title inside="this is a covered type title" hasBorder={true} />
           </div>
         </div>
         <div css={[SectionStyle, getRandomBorderRadius()]}>
           <p css={SectionTitleStyle}>:: TEXT BOX ::</p>
 
           <div>
-            <TextBox inside="simple text box" />
+            <TextBox inside="a simple text box" />
           </div>
           <div>
             <TextBox
               ascii={true}
               white={true}
-              inside="t h i s       i s       
+              inside="t h i s       i s      a n 
               a s c i i       c o d e       b o x"
             />
           </div>
@@ -77,7 +77,7 @@ export default function About() {
             <TextBox
               widthType="narrow"
               inside="
-          narrow one"
+          a narrow one"
             />
           </div>
           <div>
@@ -85,7 +85,7 @@ export default function About() {
               widthType="wide"
               white={true}
               inside="
-          wide one"
+          a wide one"
             />
           </div>
         </div>
