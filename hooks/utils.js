@@ -75,30 +75,32 @@ export const getRandomBorderRadius = () => {
 export const getNavList = (usage) => {
   if (usage === "movieMateTemplate") {
     return [
-      { href: "/movie-mate", label: "HOME" },
+      { href: "/movie-mate", label: "( back )" },
       { href: "#movie", label: "Available Movies" },
       { href: "#appointment", label: "Confirmed Appointment" },
       { href: "#log", label: "Log" },
     ];
   } else if (usage === "movieMate") {
     return [
-      { href: "/movie-mate", label: "HOME" },
-      { href: "/movie-mate/admin", label: "ADMIN" },
+      { href: "/", label: "HOME" },
+      { href: "/movie-mate", label: "user list" },
+      { href: "/movie-mate/admin", label: "staff only" },
     ];
   }
   return [
     { href: "/blog", label: "DEV BLOG" },
     { href: "/projects", label: "PROJECTS" },
     { href: "/contact", label: "CONTACT" },
-    { href: "/website", label: "WEBSITE" },
+    { href: "/website", label: "let's make..." },
+    { href: "/movie-mate", label: "let's watch..." },
   ];
 };
 
 export const getNavDesc = (usage) => {
   if (usage === "movieMateTemplate") {
-    return "-";
+    return "hello !";
   } else if (usage === "movieMate") {
-    return "-";
+    return "let's watch movie";
   }
   return "다른 페이지로 가기";
 };

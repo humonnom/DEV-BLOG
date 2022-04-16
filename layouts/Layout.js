@@ -155,7 +155,7 @@ const NavListContainerStyle = css`
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  height: 180px;
+  min-height: 180px;
   width: 140px;
   z-index: 99;
   top: 55px;
