@@ -95,6 +95,7 @@ const ContainerStyle = css`
   flex-direction: column;
   padding: 0;
   margin: 0 auto;
+  background-color: white;
 `;
 
 const MainStyle = css`

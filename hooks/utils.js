@@ -87,14 +87,13 @@ export const getNavList = (usage) => {
       { href: "/movie-mate/admin", label: "staff only" },
     ];
   } else if (usage === "website") {
-    return [{ href: "/", label: "( back )" }];
+    return [{ href: "/", label: "HOME" }];
   }
   return [
-    { href: "/blog", label: "DEV BLOG" },
+    { href: "/", label: "HOME" },
+    { href: "/blog", label: "BLOG" },
     { href: "/projects", label: "PROJECTS" },
     { href: "/contact", label: "CONTACT" },
-    { href: "/website", label: "let's make..." },
-    { href: "/movie-mate", label: "let's watch..." },
   ];
 };
 
@@ -102,9 +101,9 @@ export const getNavDesc = (usage) => {
   if (usage === "movieMateTemplate") {
     return "hello !";
   } else if (usage === "movieMate") {
-    return "let's watch a movie";
+    return "mm";
   } else if (usage === "website") {
-    return "let's make a website";
+    return "website";
   }
   return "다른 페이지로 가기";
 };
