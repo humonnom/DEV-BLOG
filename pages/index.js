@@ -2,7 +2,7 @@ import Link from "next/link";
 import useGuide from "../hooks/useGuide";
 import { Container } from "../layouts/Layout";
 export default function Home() {
-  const comp = <Link href="/website">Let&apos;s make website</Link>;
+  const comp = <Link href="/website">Let&apos;s make a website</Link>;
   const guide = "← click to register";
   const { compWithGuide } = useGuide({ comp, guide });
   const Contents = (
@@ -24,7 +24,7 @@ export default function Home() {
       <p>protected:</p>
       <p>{compWithGuide}</p>
       <p>
-        <Link href="/movie-mate">Let&apos;s watch movie with me</Link>
+        <Link href="/movie-mate">Let&apos;s watch a movie with me</Link>
       </p>
     </>
   );

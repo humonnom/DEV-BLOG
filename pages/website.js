@@ -83,5 +83,5 @@ export default function Website() {
       </>
     );
   }, [linkComp, contactComp, submit, memoComp]);
-  return <Container contents={Contents} />;
+  return <Container contents={Contents} usage="website" />;
 }
