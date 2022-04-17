@@ -36,8 +36,11 @@ export default function Blog() {
           {verified && (
             <WhitePebble inside="+" action={() => setWritingModalOn(true)} />
           )}
-          {!verified && (
+          {!verified && !loginModalOn && (
             <WhitePebble inside="login" action={() => setLoginModalOn(true)} />
+          )}
+          {!verified && loginModalOn && (
+            <WhitePebble inside="back" action={() => setLoginModalOn(false)} />
           )}
         </div>
         {verified && writingModalOn && (
@@ -67,4 +70,5 @@ const addPostButtonStyle = css`
   left: 30px;
   height: 20px;
   width: 50px;
+  z-index: 999;
 `;

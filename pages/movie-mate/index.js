@@ -66,7 +66,8 @@ export const getStaticProps = async () => {
 export default Posts;
 
 const ContentsStyle = css`
-  width: 80%;
+  width: 50%;
+  max-width: 500px;
 `;
 
 const MemberListStyle = css`
