@@ -9,6 +9,7 @@ import { FONT_SIZE } from "../styles/global";
 
 export default function Website() {
   const { comp: linkComp, value: linkValue } = useInput({ type: "text" });
+  const { comp: instaComp, value: instaValue } = useInput({ type: "text" });
   const { comp: contactComp, value: contactValue } = useInput({ type: "text" });
   const { comp: memoComp, value: memoValue } = useInput({ type: "text" });
   const id = new Date().toISOString();
@@ -19,6 +20,7 @@ export default function Website() {
     data: {
       info: {
         link: linkValue,
+        insta: instaValue,
         contact: contactValue,
         memo: memoValue,
       },
@@ -32,12 +34,12 @@ export default function Website() {
   }, [res]);
 
   const submit = useCallback(() => {
-    if (contactValue !== "") {
+    if (contactValue !== "" && memoValue !== "") {
       request();
     } else {
-      alert("내용을 채워주세요");
+      alert("이메일과 사이트 설명은 반드시 적어주세요");
     }
-  }, [contactValue, request]);
+  }, [contactValue, memoValue, request]);
 
   const Contents = useMemo(() => {
     return (
@@ -47,22 +49,29 @@ export default function Website() {
         <div>
           <div>
             <WhitePebble
-              inside="memo: "
-              guide="사이트 설명을 간단히 적어주세요"
-              baby={<>{memoComp}</>}
-            />
-          </div>
-          <div>
-            <WhitePebble
-              inside="contact: "
-              guide=" 연락처(email, instagram 등) "
+              inside="email: "
+              guide=" 연락처(email) "
               baby={<>{contactComp}</>}
             />
           </div>
           <div>
             <WhitePebble
+              inside="instagram: "
+              guide=" 작업 계정이 있다면 적어주세요 "
+              baby={<>{instaComp}</>}
+            />
+          </div>
+          <div>
+            <WhitePebble
+              inside="memo: "
+              guide="사이트 설명을 적어주세요"
+              baby={<>{memoComp}</>}
+            />
+          </div>
+          <div>
+            <WhitePebble
               inside="link: "
-              guide="링크(작업물, 예시 사이트 등)"
+              guide="링크(작업물, 기존 사이트 등)"
               baby={<>{linkComp}</>}
             />
           </div>
@@ -82,6 +91,6 @@ export default function Website() {
         </p>
       </>
     );
-  }, [linkComp, contactComp, submit, memoComp]);
+  }, [linkComp, contactComp, submit, memoComp, instaComp]);
   return <Container contents={Contents} usage="website" />;
 }

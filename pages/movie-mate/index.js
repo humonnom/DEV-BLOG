@@ -65,18 +65,20 @@ export const getStaticProps = async () => {
 
 export default Posts;
 
-const ContentsStyle = css``;
+const ContentsStyle = css`
+  width: 80%;
+`;
 
 const MemberListStyle = css`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: minmax(50px, auto);
+  grid-auto-rows: minmax(20px, auto);
 `;
 
 const MemberStyle = css`
-  width: 80px;
-  margin: 3px;
+  width: 80%;
+  margin: 3px auto;
 `;
 
 const ScreenStyle = css`
