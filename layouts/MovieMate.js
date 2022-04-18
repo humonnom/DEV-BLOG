@@ -96,11 +96,13 @@ export function MovieMate({ member }) {
     );
   }, [getMovies]);
 
-  const guestName = (
-    <div css={GuestNameContainerStyle}>
-      <h2>{member.info.name}</h2>
-    </div>
-  );
+  const guestName = useMemo(() => {
+    return (
+      <div css={GuestNameContainerStyle}>
+        <h2>{member.info.name}</h2>
+      </div>
+    );
+  }, [member]);
 
   const Contents = (
     <>
