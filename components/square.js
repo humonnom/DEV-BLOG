@@ -5,13 +5,14 @@ import Link from "next/link";
 import useGuide from "../hooks/useGuide";
 import { BlackPebble } from "./pebble";
 import { getBackground, getBorder } from "../hooks/utils";
+import { FONT_SIZE } from "../styles/global";
 
 export const Square = ({ title, link, tags, guide, white }) => {
   const tagsComp = useMemo(() => {
     return tags.map((tag) => {
       return (
         <li key={Math.random()} css={TagStyle}>
-          <BlackPebble inside={tag} />
+          <BlackPebble inside={tag} mini={true} />
         </li>
       );
     });
@@ -50,8 +51,8 @@ const SquareContainerStyle = css`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 280px;
-  height: 200px;
+  width: 200px;
+  height: 130px;
 `;
 
 const SquareStyle = css`
@@ -65,7 +66,7 @@ const SquareStyle = css`
 
 const TagsStyle = css`
   display: flex;
-  width: 90%;
+  width: 80%;
   align-items: center;
   justify-content: space-around;
 `;
@@ -74,5 +75,7 @@ const TagStyle = css`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 80px;
+  width: 50px;
+  height: 20px;
+  font-size: ${FONT_SIZE.small};
 `;

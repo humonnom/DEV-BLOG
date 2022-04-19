@@ -27,6 +27,9 @@ export const globalStyles = (
           list-style: none;
           padding-left: 0px;
         }
+        li {
+          list-style: none;
+        }
         input {
           border: none;
         }
@@ -48,10 +51,10 @@ export const SHADOW_STYLE = {
 
 export const FONT_SIZE = {
   xSmall: "0.5rem",
-  small: "0.8rem",
-  medium: "1.0rem",
-  large: "1.2rem",
-  xLarge: "1.5rem",
+  small: "0.7rem",
+  medium: "0.9rem",
+  large: "1.0rem",
+  xLarge: "1.3rem",
 };
 
 export const COLOR_STYLE = {

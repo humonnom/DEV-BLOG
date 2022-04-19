@@ -7,7 +7,7 @@ import { Container } from "../../layouts/Layout";
 import { BORDER_STYLE, FlexCenter, FONT_SIZE } from "../../styles/global";
 import db from "../../utils/db";
 
-const Posts = (props) => {
+export default function MovieMate(props) {
   const alphabets = getAlphabets();
   const { membersData } = props;
   const Contents = useMemo(() => {
@@ -49,7 +49,7 @@ const Posts = (props) => {
     );
   }, [membersData, alphabets]);
   return <Container contents={Contents} usage="movieMate" />;
-};
+}
 
 export const getStaticProps = async () => {
   const members = await db.collection("members").orderBy("created").get();
@@ -62,8 +62,6 @@ export const getStaticProps = async () => {
     revalidate: 10,
   };
 };
-
-export default Posts;
 
 const ContentsStyle = css`
   width: 50%;

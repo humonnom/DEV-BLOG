@@ -13,7 +13,7 @@ export default function About() {
   const Contents = (
     <div css={[FlexCenter]}>
       <div css={PageTitle}>
-        <Title inside="About this site" />
+        <Title inside="Components of this site" />
       </div>
       <div css={[FlexCenter]}>
         <div css={[SectionStyle, getRandomBorderRadius()]}>

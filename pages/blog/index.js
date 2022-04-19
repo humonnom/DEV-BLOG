@@ -1,23 +1,43 @@
-import { Container } from "../layouts/Layout";
-import React, { useCallback, useMemo, useState } from "react";
-import { BlackPebble, WhitePebble } from "../components/pebble";
-import { useInput } from "../components/input";
-import Modal from "../components/Modal";
+import { Container } from "../../layouts/Layout";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { BlackPebble, WhitePebble } from "../../components/pebble";
+import { useInput } from "../../components/input";
+import Modal from "../../components/Modal";
 import { css } from "@emotion/react";
+import { FlexCenter } from "../../styles/global";
+import { Square } from "../../components/square";
+import db from "../../utils/db";
 
-export default function Blog() {
+export default function Blog({ postsData }) {
   const { comp, value } = useInput({ type: "password" });
   const [verified, setVerified] = useState(false);
   const [writingModalOn, setWritingModalOn] = useState(false);
   const [loginModalOn, setLoginModalOn] = useState(false);
 
   const submit = useCallback(() => {
-    console.log("??");
     if (value === process.env.NEXT_PUBLIC_ADMIN_PASSWORD) {
       setVerified(true);
       setLoginModalOn(false);
     }
   }, [value]);
+
+  const posts = useMemo(() => {
+    if (postsData) {
+      const datas = postsData.filter((data) => !data.deleted);
+      return datas.map((data) => {
+        return (
+          <li key={data.id}>
+            <Square
+              title={data.title}
+              link={`/blog/${data.slug}`}
+              tags={data.tags}
+            />
+          </li>
+        );
+      });
+    }
+    return <></>;
+  }, [postsData]);
 
   const Contents = useMemo(() => {
     return (
@@ -45,11 +65,12 @@ export default function Blog() {
         </div>
         {verified && writingModalOn && (
           <Modal
-            contents={<>writing</>}
+            contents={<>add post comp</>}
             visible={writingModalOn}
             close={() => setWritingModalOn(false)}
           />
         )}
+        <div css={postsContainerStyle}>{posts}</div>
       </>
     );
   }, [
@@ -60,9 +81,22 @@ export default function Blog() {
     submit,
     loginModalOn,
     setLoginModalOn,
+    posts,
   ]);
   return <Container contents={Contents} />;
 }
+
+export const getStaticProps = async () => {
+  const posts = await db.collection("posts").orderBy("created").get();
+  const postsData = posts.docs.map((entry) => ({
+    id: entry.id,
+    ...entry.data(),
+  }));
+  return {
+    props: { postsData },
+    revalidate: 10,
+  };
+};
 
 const addPostButtonStyle = css`
   position: absolute;
@@ -71,4 +105,9 @@ const addPostButtonStyle = css`
   height: 20px;
   width: 50px;
   z-index: 999;
+`;
+
+const postsContainerStyle = css`
+  width: 100%;
+  ${FlexCenter}
 `;

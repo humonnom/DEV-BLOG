@@ -1,7 +1,12 @@
 import { css } from "@emotion/react";
 import React, { useMemo } from "react";
 import useGuide from "../hooks/useGuide";
-import { BORDER_STYLE, COLOR_STYLE, FlexCenter } from "../styles/global";
+import {
+  BORDER_STYLE,
+  COLOR_STYLE,
+  FlexCenter,
+  FONT_SIZE,
+} from "../styles/global";
 
 export const Pebble = ({ inside, action, type, guide, baby }) => {
   const text = useMemo(() => {
@@ -15,7 +20,7 @@ export const Pebble = ({ inside, action, type, guide, baby }) => {
   const comp = useMemo(() => {
     return (
       <button type="button" onClick={onClick}>
-        <div css={[PebbleWithBaby, TextStyle(type)]}>
+        <div css={[PebbleWithBaby, TextStyle(type), TextSize(type)]}>
           {text}
           {baby && baby}
         </div>
@@ -32,23 +37,25 @@ export const Pebble = ({ inside, action, type, guide, baby }) => {
   }
 };
 
-export const WhitePebble = ({ inside, action, guide, baby }) => {
+export const WhitePebble = ({ inside, action, guide, baby, mini }) => {
+  const type = mini ? "whiteMini" : "white";
   return (
     <Pebble
       inside={inside}
       action={action}
-      type="white"
+      type={type}
       guide={guide}
       baby={baby}
     />
   );
 };
-export const BlackPebble = ({ inside, action, guide, baby }) => {
+export const BlackPebble = ({ inside, action, guide, baby, mini }) => {
+  const type = mini ? "blackMini" : "black";
   return (
     <Pebble
       inside={inside}
       action={action}
-      type="black"
+      type={type}
       guide={guide}
       baby={baby}
     />
@@ -76,7 +83,7 @@ const BlackPebbleStyle = css`
 `;
 
 const PebbleStyle = (type) => {
-  if (type === "black") {
+  if (type === "black" || type === "blackMini") {
     return BlackPebbleStyle;
   } else {
     return WhitePebbleStyle;
@@ -84,7 +91,7 @@ const PebbleStyle = (type) => {
 };
 
 const TextStyle = (type) => {
-  if (type === "black") {
+  if (type === "black" || type === "blackMini") {
     return css`
       color: ${COLOR_STYLE.white};
     `;
@@ -93,6 +100,17 @@ const TextStyle = (type) => {
       color: ${COLOR_STYLE.black};
     `;
   }
+};
+
+const TextSize = (type) => {
+  if (type === "blackMini" || type === "whiteMini") {
+    return css`
+      font-size: ${FONT_SIZE.xSmall};
+    `;
+  } else
+    return css`
+      font-size: ${FONT_SIZE.medium};
+    `;
 };
 
 const PebbleWithBaby = css`

@@ -63,7 +63,7 @@ export const Footer = () => {
     <footer css={FooterStyle}>
       <p>
         by <a href="https://github.com/humonnom">@humonnom</a> 2022,{" "}
-        <Link href="/about">about this site</Link>
+        <Link href="/about">components of this site</Link>
       </p>
     </footer>
   );
@@ -131,8 +131,7 @@ const NavButtonStyle = css`
   top: 30px;
   display: flex;
   width: 40px;
-  height: 40px;
-  border-radius: 16px;
+  height: 20px;
   background-color: black;
   color: white;
   font-family: "Josefin Sans", sans-serif;
@@ -159,7 +158,7 @@ const NavListContainerStyle = css`
   min-height: 180px;
   width: 140px;
   z-index: 99;
-  top: 55px;
+  top: 40px;
   right: 55px;
   border: ${BORDER_STYLE.black};
   color: ${COLOR_STYLE.black};
