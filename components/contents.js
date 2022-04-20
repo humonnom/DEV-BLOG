@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { css } from "@emotion/react";
-import { COLOR_STYLE } from "../styles/global";
+import { COLOR_STYLE, FONT_SIZE } from "../styles/global";
 import { getPadding, getWidth } from "../styles/getter";
 import { getBackground, getBorder, getColor } from "../hooks/utils";
 
@@ -26,6 +26,7 @@ export const TextBox = ({ inside, padding, widthType, ascii, white }) => {
 
 const TextBoxStyle = css`
   display: flex;
+  font-size: ${FONT_SIZE.small};
 `;
 
 const TextStyle = (ascii) => {

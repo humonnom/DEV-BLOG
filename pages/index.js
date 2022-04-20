@@ -1,6 +1,7 @@
 import { css } from "@emotion/react";
 import Link from "next/link";
 import { useMemo } from "react";
+import { TextBox } from "../components/contents";
 import { Container } from "../layouts/Layout";
 import { COLOR_STYLE, FlexCenter, FONT_SIZE } from "../styles/global";
 export default function Home() {
@@ -12,6 +13,19 @@ export default function Home() {
             ${FlexCenter}
           `}
         >
+          <TextBox
+            inside={`        
+     🀆🀆🀆
+                                                       - - - - -/ - -
+     
+
+     phone
+     email
+        `}
+            ascii={true}
+            white={true}
+          />
+          <pre />
           <div css={ListStyle}>
             <Link href="/blog" passHref>
               <p css={ListTextStyle}>BLOG</p>
