@@ -1,16 +1,29 @@
-import { BlackPebble } from "../components/pebble";
+import { css } from "@emotion/react";
+import { BlackTofu } from "../components/tofu";
 import { Container } from "../layouts/Layout";
+import { FONT_SIZE } from "../styles/global";
 
 export default function Contact() {
   const Contents = (
     <>
-      <p>( 박주은 )</p>
+      <p css={NameStyle}>Jueun Park</p>
       <div>
-        <BlackPebble inside="+ software developer" />
-        <BlackPebble inside="+ fine art background" />
-        <BlackPebble inside="+ juepark42@gmail.com" />
+        <div css={InfoStyle}>
+          <BlackTofu inside="Software Developer" />
+        </div>
+        <div css={InfoStyle}>
+          <BlackTofu inside="juepark42@gmail.com" />
+        </div>
       </div>
     </>
   );
   return <Container contents={Contents} />;
 }
+
+const NameStyle = css`
+  font-size: ${FONT_SIZE.medium};
+`;
+const InfoStyle = css`
+  width: 200px;
+  height: 22px;
+`;

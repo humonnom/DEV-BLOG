@@ -8,9 +8,9 @@ import {
   FONT_SIZE,
 } from "../styles/global";
 
-export const Pebble = ({ inside, action, type, guide, baby }) => {
+export const Tofu = ({ inside, action, type, guide, baby }) => {
   const text = useMemo(() => {
-    return <p>{inside}</p> || "pebble";
+    return <p>{inside}</p> || "tofu";
   }, [inside]);
 
   const onClick = useMemo(() => {
@@ -20,7 +20,7 @@ export const Pebble = ({ inside, action, type, guide, baby }) => {
   const comp = useMemo(() => {
     return (
       <button type="button" onClick={onClick}>
-        <div css={[PebbleWithBaby, TextStyle(type), TextSize(type)]}>
+        <div css={[TofuWithBaby, TextStyle(type), TextSize(type)]}>
           {text}
           {baby && baby}
         </div>
@@ -28,19 +28,19 @@ export const Pebble = ({ inside, action, type, guide, baby }) => {
     );
   }, [text, onClick, baby, type]);
 
-  const { compWithGuide } = useGuide({ comp, style: PebbleStyle(type), guide });
+  const { compWithGuide } = useGuide({ comp, style: TofuStyle(type), guide });
 
   if (guide) {
     return compWithGuide;
   } else {
-    return <div css={PebbleStyle(type)}>{comp}</div>;
+    return <div css={TofuStyle(type)}>{comp}</div>;
   }
 };
 
-export const WhitePebble = ({ inside, action, guide, baby, mini }) => {
+export const WhiteTofu = ({ inside, action, guide, baby, mini }) => {
   const type = mini ? "whiteMini" : "white";
   return (
-    <Pebble
+    <Tofu
       inside={inside}
       action={action}
       type={type}
@@ -49,10 +49,10 @@ export const WhitePebble = ({ inside, action, guide, baby, mini }) => {
     />
   );
 };
-export const BlackPebble = ({ inside, action, guide, baby, mini }) => {
+export const BlackTofu = ({ inside, action, guide, baby, mini }) => {
   const type = mini ? "blackMini" : "black";
   return (
-    <Pebble
+    <Tofu
       inside={inside}
       action={action}
       type={type}
@@ -62,31 +62,30 @@ export const BlackPebble = ({ inside, action, guide, baby, mini }) => {
   );
 };
 
-const PebbleBasicStyle = css`
+const TofuBasicStyle = css`
   ${FlexCenter}
-  border-radius: 20px;
   width: 100%;
   height: 100%;
   padding: 0;
 `;
 
-const WhitePebbleStyle = css`
+const WhiteTofuStyle = css`
   background-color: ${COLOR_STYLE.white};
   border: ${BORDER_STYLE.black};
-  ${PebbleBasicStyle}
+  ${TofuBasicStyle}
 `;
 
-const BlackPebbleStyle = css`
+const BlackTofuStyle = css`
   background-color: ${COLOR_STYLE.black};
   border: ${BORDER_STYLE.white};
-  ${PebbleBasicStyle}
+  ${TofuBasicStyle}
 `;
 
-const PebbleStyle = (type) => {
+const TofuStyle = (type) => {
   if (type === "black" || type === "blackMini") {
-    return BlackPebbleStyle;
+    return BlackTofuStyle;
   } else {
-    return WhitePebbleStyle;
+    return WhiteTofuStyle;
   }
 };
 
@@ -113,7 +112,7 @@ const TextSize = (type) => {
     `;
 };
 
-const PebbleWithBaby = css`
+const TofuWithBaby = css`
   display: flex;
   flex-direction: row;
   justify-content: center;

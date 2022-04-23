@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 import Link from "next/link";
 import { useMemo } from "react";
-import { BlackPebble, WhitePebble } from "../../components/pebble";
+import { BlackTofu, WhiteTofu } from "../../components/tofu";
 import { getAlphabets } from "../../hooks/utils";
 import { Container } from "../../layouts/Layout";
 import { BORDER_STYLE, FlexCenter, FONT_SIZE } from "../../styles/global";
@@ -26,10 +26,7 @@ export default function MovieMate(props) {
                 <div css={MemberStyle} key={found.id}>
                   <Link href={`/movie-mate/${found.slug}`}>
                     <a>
-                      <BlackPebble
-                        inside={found.slug}
-                        guide={found.info.name}
-                      />
+                      <BlackTofu inside={found.slug} guide={found.info.name} />
                     </a>
                   </Link>
                 </div>
@@ -38,7 +35,7 @@ export default function MovieMate(props) {
               return (
                 <div css={MemberStyle} key={Math.random()}>
                   <a>
-                    <WhitePebble inside={alphabet} guide="empty seat" />
+                    <WhiteTofu inside={alphabet} guide="empty seat" />
                   </a>
                 </div>
               );
@@ -65,7 +62,7 @@ export const getStaticProps = async () => {
 
 const ContentsStyle = css`
   width: 50%;
-  max-width: 500px;
+  max-width: 300px;
 `;
 
 const MemberListStyle = css`
