@@ -23,8 +23,6 @@ export default GuideButtons;
 const ButtonContainerStyle = css`
   position: absolute;
   display: flex;
-  justify-content: end;
-  right: 10px;
   width: 100%;
   align-items: center;
   top: 4vh;

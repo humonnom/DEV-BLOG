@@ -68,16 +68,14 @@ export function ContactForm() {
           </div>
         </div>
         <div css={RegisterButtonStyle}>
-          <button
-            type="button"
-            onClick={submit}
+          <div
             css={css`
               font-size: ${FONT_SIZE.xSmall};
               height: 20px;
             `}
           >
-            <BlackPebble inside="send" />
-          </button>
+            <BlackPebble inside="send" action={submit} />
+          </div>
         </div>
       </div>
     );
