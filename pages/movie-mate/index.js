@@ -45,7 +45,7 @@ export default function MovieMate(props) {
       </div>
     );
   }, [membersData, alphabets]);
-  return <Container contents={Contents} usage="movieMate" />;
+  return <Container contents={Contents} />;
 }
 
 export const getStaticProps = async () => {

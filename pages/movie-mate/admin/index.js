@@ -109,7 +109,7 @@ function Index() {
     memberModalOn,
     submit,
   ]);
-  return <Container contents={Contents} usage="movieMate" />;
+  return <Container contents={Contents} />;
 }
 
 export default Index;

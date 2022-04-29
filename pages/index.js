@@ -54,7 +54,7 @@ export default function Home() {
             {emailWithGuide}
           </div>
           <pre />
-          <div css={ListStyle}>
+          {/* <div css={ListStyle}>
             <Link href="/blog" passHref>
               <p css={ListTextStyle}>BLOG</p>
             </Link>
@@ -68,7 +68,7 @@ export default function Home() {
             <Link href="/contact" passHref>
               <p css={ListTextStyle}>CONTACT</p>
             </Link>
-          </div>
+          </div> */}
         </div>
       </>
     );

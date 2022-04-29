@@ -1,5 +1,6 @@
 import { css } from "@emotion/react";
-import { BlackTofu } from "../components/tofu";
+import Link from "next/link";
+import { BlackTofu, WhiteTofu } from "../components/tofu";
 import { Container } from "../layouts/Layout";
 import { FONT_SIZE } from "../styles/global";
 
@@ -13,6 +14,16 @@ export default function Contact() {
         </div>
         <div css={InfoStyle}>
           <BlackTofu inside="juepark42@gmail.com" />
+        </div>
+        <div css={InfoStyle}>
+          <Link href="https://github.com/humonnom">
+            <a>
+              <BlackTofu inside="→ Github link" />
+            </a>
+          </Link>
+        </div>
+        <div css={InfoStyle}>
+          <BlackTofu inside="→ about this site" />
         </div>
       </div>
     </>

@@ -112,12 +112,7 @@ export function MovieMate({ member }) {
     </>
   );
 
-  return (
-    <Container
-      contents={Contents}
-      usage={correct ? "movieMateTemplate" : "movieMate"}
-    />
-  );
+  return <Container contents={Contents} />;
 }
 
 const CategoryStyle = css`

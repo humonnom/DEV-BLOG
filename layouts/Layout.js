@@ -10,6 +10,7 @@ import {
   FONT_SIZE,
 } from "../styles/global";
 import { getNavDesc, getNavList } from "../hooks/utils";
+import { Tofu } from "../components/tofu";
 
 export const HeadConf = () => {
   return (
@@ -21,67 +22,54 @@ export const HeadConf = () => {
   );
 };
 
-export const Nav = ({ usage }) => {
+export const Nav = () => {
   const [clicked, setClicked] = useState(false);
 
-  const handleClick = () => {
-    setClicked(!clicked);
-  };
-  const desc = getNavDesc(usage);
   const linkList = useMemo(() => {
-    const list = getNavList(usage);
+    const list = [
+      { href: "/", label: "HOME" },
+      { href: "/blog", label: "BLOG" },
+      { href: "/projects", label: "PROJECTS" },
+      { href: "/contact", label: "CONTACT" },
+    ];
     return (
-      <ul css={NavListStyle}>
+      <ul css={NavStyle}>
         {list.map((link) => {
           return (
-            <li key={Math.random()}>
-              <p>
-                <Link href={link.href}>{link.label}</Link>
-              </p>
-            </li>
+            <div key={Math.random()}>
+              <Link href={link.href}>
+                <a>
+                  <div css={NavButtonStyle}>
+                    <Tofu inside={link.label} />
+                  </div>
+                </a>
+              </Link>
+            </div>
           );
         })}
       </ul>
     );
-  }, [usage]);
-  return (
-    <div css={[NavStyle]}>
-      <button type="button" css={NavButtonStyle} onClick={handleClick}>
-        {!clicked && <p>~</p>}
-        {clicked && <p>-</p>}
-      </button>
-      <div css={[getDisplay(clicked), NavListContainerStyle]}>
-        <p css={NavTitleStyle}>{desc}</p>
-        {linkList}
-      </div>
-    </div>
-  );
+  }, []);
+  return <div css={[NavStyle]}>{linkList}</div>;
 };
 
 export const Footer = () => {
-  return (
-    <footer css={FooterStyle}>
-      <p>
-        by <a href="https://github.com/humonnom">@humonnom</a> 2022,{" "}
-        <Link href="/about">components of this site</Link>
-      </p>
-    </footer>
-  );
+  return <footer css={FooterStyle}></footer>;
 };
 
-const Header = ({ usage }) => {
+const Header = () => {
   return (
     <>
-      <Nav usage={usage} />
+      <Nav />
     </>
   );
 };
 
-export const Container = ({ contents, usage }) => {
+export const Container = ({ contents }) => {
   return (
     <div css={ContainerStyle}>
       <HeadConf />
-      <Header usage={usage} />
+      <Header />
       <main css={MainStyle}>{contents}</main>
       <Footer />
     </div>
@@ -106,9 +94,7 @@ const MainStyle = css`
 
 const FooterStyle = css`
   display: flex;
-  flex: 1;
   padding: 2rem 0;
-  border-top: 1px solid #eaeaea;
   justify-content: center;
   align-items: center;
 `;
@@ -117,25 +103,20 @@ const NavStyle = css`
   position: sticky;
   top: 0;
   display: flex;
-  justify-content: end;
+  justify-content: center;
   align-items: center;
-  height: 10vh;
+  height: 4vh;
   z-index: 99;
+  background-color: ${COLOR_STYLE.black};
 `;
 
 const NavButtonStyle = css`
-  position: absolute;
   justify-content: center;
   align-items: center;
-  right: 30px;
-  top: 30px;
   display: flex;
-  width: 40px;
-  height: 20px;
-  background-color: black;
+  width: 70px;
+  height: 13px;
   color: white;
-  font-family: "Josefin Sans", sans-serif;
-  font-size: 1.4rem;
 `;
 
 const getDisplay = (open) => {

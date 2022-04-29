@@ -72,7 +72,7 @@ export const getRandomBorderRadius = () => {
   `;
 };
 
-export const getNavList = (usage) => {
+export const getButtonsList = (usage) => {
   if (usage === "movieMateTemplate") {
     return [
       { href: "/movie-mate", label: "( back )" },
@@ -86,15 +86,7 @@ export const getNavList = (usage) => {
       { href: "/movie-mate", label: "user list" },
       { href: "/movie-mate/admin", label: "staff only" },
     ];
-  } else if (usage === "website") {
-    return [{ href: "/", label: "HOME" }];
   }
-  return [
-    { href: "/", label: "HOME" },
-    { href: "/blog", label: "BLOG" },
-    { href: "/projects", label: "PROJECTS" },
-    { href: "/contact", label: "CONTACT" },
-  ];
 };
 
 export const getNavDesc = (usage) => {
