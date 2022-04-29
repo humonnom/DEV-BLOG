@@ -7,6 +7,7 @@ import { css } from "@emotion/react";
 import { FlexCenter } from "../../styles/global";
 import { Square } from "../../components/square";
 import db from "../../utils/db";
+import GuideButtons from "../../components/guideButtons";
 
 export default function Blog({ postsData }) {
   const { comp, value } = useInput({ type: "password" });
@@ -39,6 +40,14 @@ export default function Blog({ postsData }) {
     return <></>;
   }, [postsData]);
 
+  const list = useMemo(() => {
+    if (verified) {
+      return [{ inside: "+", action: () => setWritingModalOn(true) }];
+    } else {
+      return [{ inside: "login", action: () => setLoginModalOn(true) }];
+    }
+  }, [setLoginModalOn, setWritingModalOn, verified]);
+
   const Contents = useMemo(() => {
     return (
       <>
@@ -52,17 +61,7 @@ export default function Blog({ postsData }) {
             </div>
           </div>
         )}
-        <div css={addPostButtonStyle}>
-          {verified && (
-            <WhitePebble inside="+" action={() => setWritingModalOn(true)} />
-          )}
-          {!verified && !loginModalOn && (
-            <WhitePebble inside="login" action={() => setLoginModalOn(true)} />
-          )}
-          {!verified && loginModalOn && (
-            <WhitePebble inside="back" action={() => setLoginModalOn(false)} />
-          )}
-        </div>
+        <GuideButtons list={list} />
         {verified && writingModalOn && (
           <Modal
             contents={<>add post comp</>}
@@ -73,16 +72,7 @@ export default function Blog({ postsData }) {
         <div css={postsContainerStyle}>{posts}</div>
       </>
     );
-  }, [
-    verified,
-    writingModalOn,
-    setWritingModalOn,
-    comp,
-    submit,
-    loginModalOn,
-    setLoginModalOn,
-    posts,
-  ]);
+  }, [writingModalOn, comp, submit, loginModalOn, posts, list, verified]);
   return <Container contents={Contents} />;
 }
 
@@ -97,15 +87,6 @@ export const getStaticProps = async () => {
     revalidate: 10,
   };
 };
-
-const addPostButtonStyle = css`
-  position: absolute;
-  top: 30px;
-  left: 30px;
-  height: 20px;
-  width: 50px;
-  z-index: 999;
-`;
 
 const postsContainerStyle = css`
   width: 100%;

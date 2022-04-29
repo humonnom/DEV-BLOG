@@ -3,14 +3,8 @@ import Head from "next/head";
 import Link from "next/link";
 import { css } from "@emotion/react";
 import { useMemo, useState } from "react";
-import {
-  BORDER_STYLE,
-  COLOR_STYLE,
-  FlexCenter,
-  FONT_SIZE,
-} from "../styles/global";
-import { getNavDesc, getNavList } from "../hooks/utils";
-import { Tofu } from "../components/tofu";
+import { COLOR_STYLE, FlexCenter, FONT_SIZE } from "../styles/global";
+import { BlackTofu, Tofu, WhiteTofu } from "../components/tofu";
 
 export const HeadConf = () => {
   return (
@@ -23,8 +17,6 @@ export const HeadConf = () => {
 };
 
 export const Nav = () => {
-  const [clicked, setClicked] = useState(false);
-
   const linkList = useMemo(() => {
     const list = [
       { href: "/", label: "HOME" },
@@ -39,9 +31,7 @@ export const Nav = () => {
             <div key={Math.random()}>
               <Link href={link.href}>
                 <a>
-                  <div css={NavButtonStyle}>
-                    <Tofu inside={link.label} />
-                  </div>
+                  <div css={NavButtonStyle}>{link.label}</div>
                 </a>
               </Link>
             </div>
@@ -51,10 +41,6 @@ export const Nav = () => {
     );
   }, []);
   return <div css={[NavStyle]}>{linkList}</div>;
-};
-
-export const Footer = () => {
-  return <footer css={FooterStyle}></footer>;
 };
 
 const Header = () => {
@@ -71,7 +57,6 @@ export const Container = ({ contents }) => {
       <HeadConf />
       <Header />
       <main css={MainStyle}>{contents}</main>
-      <Footer />
     </div>
   );
 };
@@ -92,18 +77,12 @@ const MainStyle = css`
   ${FlexCenter}
 `;
 
-const FooterStyle = css`
-  display: flex;
-  padding: 2rem 0;
-  justify-content: center;
-  align-items: center;
-`;
-
 const NavStyle = css`
   position: sticky;
   top: 0;
   display: flex;
-  justify-content: center;
+  width: 100%;
+  justify-content: space-around;
   align-items: center;
   height: 4vh;
   z-index: 99;
@@ -115,55 +94,7 @@ const NavButtonStyle = css`
   align-items: center;
   display: flex;
   width: 70px;
-  height: 13px;
+  height: 2vh;
   color: white;
-`;
-
-const getDisplay = (open) => {
-  if (open) {
-    return css`
-      display: flex;
-    `;
-  } else {
-    return css`
-      display: none;
-    `;
-  }
-};
-
-const NavListContainerStyle = css`
-  position: absolute;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  min-height: 180px;
-  width: 140px;
-  z-index: 99;
-  top: 40px;
-  right: 55px;
-  border: ${BORDER_STYLE.black};
-  color: ${COLOR_STYLE.black};
   font-size: ${FONT_SIZE.small};
-  background-color: white;
-  padding: 20px 25px;
-`;
-
-const NavTitleStyle = css`
-  margin: 15px auto;
-  text-align: center;
-`;
-
-const NavListStyle = css`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 0px;
-  li {
-    p {
-      padding: 11px;
-      margin: 0px;
-      text-align: center;
-    }
-  }
 `;

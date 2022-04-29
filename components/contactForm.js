@@ -1,14 +1,12 @@
 import { css } from "@emotion/react";
-import Link from "next/link";
 import { useCallback, useEffect, useMemo } from "react";
-import { useInput } from "../components/input";
-import { BlackPebble, WhitePebble } from "../components/pebble";
+import { useInput } from "./input";
+import { BlackPebble } from "./pebble";
+import { WhiteTofu } from "./tofu";
 import { useRequest } from "../hooks/useRequest";
-import { Container } from "../layouts/Layout";
 import { FONT_SIZE } from "../styles/global";
 
-export default function Website() {
-  const { comp: linkComp, value: linkValue } = useInput({ type: "text" });
+export function ContactForm() {
   const { comp: instaComp, value: instaValue } = useInput({ type: "text" });
   const { comp: contactComp, value: contactValue } = useInput({ type: "text" });
   const { comp: memoComp, value: memoValue } = useInput({ type: "text" });
@@ -19,7 +17,6 @@ export default function Website() {
     method: "post",
     data: {
       info: {
-        link: linkValue,
         insta: instaValue,
         contact: contactValue,
         memo: memoValue,
@@ -29,7 +26,7 @@ export default function Website() {
 
   useEffect(() => {
     if (res && res.status === 200) {
-      alert("등록되었습니다. 감사합니다.");
+      alert("제출되었습니다. 감사합니다.");
     }
   }, [res]);
 
@@ -43,54 +40,69 @@ export default function Website() {
 
   const Contents = useMemo(() => {
     return (
-      <>
-        <p>( 웹사이트 만들어 드립니다. )</p>
-
+      <div css={ContactFormStyle}>
+        <div css={ContactTitleStyle}>
+          <p>Contact</p>
+        </div>
         <div>
           <div>
-            <WhitePebble
+            <WhiteTofu
               inside="email: "
               guide=" 연락처(email) "
               baby={<>{contactComp}</>}
             />
           </div>
           <div>
-            <WhitePebble
+            <WhiteTofu
               inside="instagram: "
-              guide=" 작업 계정이 있다면 적어주세요 "
+              guide=" 연락처(instagram) "
               baby={<>{instaComp}</>}
             />
           </div>
           <div>
-            <WhitePebble
+            <WhiteTofu
               inside="memo: "
-              guide="사이트 설명을 적어주세요"
+              guide="남기고 싶은 말을 적어주세요"
               baby={<>{memoComp}</>}
             />
           </div>
-          <div>
-            <WhitePebble
-              inside="link: "
-              guide="링크(작업물, 기존 사이트 등)"
-              baby={<>{linkComp}</>}
-            />
-          </div>
-          <div>
-            <BlackPebble inside=" 신청하기 " action={submit} />
-          </div>
         </div>
-        <p
-          css={css`
-            margin-top: 15px;
-            font-size: ${FONT_SIZE.xSmall};
-          `}
-        >
-          <Link href="https://www.instagram.com/uronghigh/">
-            <a>send me dm </a>
-          </Link>
-        </p>
-      </>
+        <div css={RegisterButtonStyle}>
+          <button
+            type="button"
+            onClick={submit}
+            css={css`
+              font-size: ${FONT_SIZE.xSmall};
+              height: 20px;
+            `}
+          >
+            <BlackPebble inside="send" />
+          </button>
+        </div>
+      </div>
     );
-  }, [linkComp, contactComp, submit, memoComp, instaComp]);
-  return <Container contents={Contents} />;
+  }, [contactComp, submit, memoComp, instaComp]);
+  return Contents;
 }
+const RegisterButtonStyle = css`
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  width: 100%;
+`;
+
+const ContactFormStyle = css`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+const ContactTitleStyle = css`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-size: ${FONT_SIZE.xSmall};
+  p {
+    margin-bottom: 0;
+  }
+`;

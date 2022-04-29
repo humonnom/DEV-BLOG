@@ -6,12 +6,6 @@ import Link from "next/link";
 import { COLOR_STYLE, FONT_SIZE } from "../styles/global";
 
 export default function Projects() {
-  const comp = (
-    <Link href="/website" passHref>
-      <p>website</p>
-    </Link>
-  );
-  const { compWithGuide } = useGuide({ comp, guide: "← click to register" });
   const movieComp = (
     <Link href="/movie-mate" passHref>
       <p>movie mate</p>
@@ -25,11 +19,11 @@ export default function Projects() {
   const Contents = useMemo(() => {
     return (
       <div css={ProjectsBodyStyle}>
-        <div css={forFunStyle}>{compWithGuide}</div>
+        {/* <div css={forFunStyle}>{compWithGuide}</div> */}
         <div css={forFunStyle}>{movieCompWithGuide}</div>
       </div>
     );
-  }, [compWithGuide, movieCompWithGuide]);
+  }, [movieCompWithGuide]);
 
   return <Container contents={Contents} />;
 }
