@@ -1,5 +1,4 @@
 import { css } from "@emotion/react";
-import { useRequest } from "../../hooks/useRequest";
 import { getRandomBorderRadius } from "../../hooks/utils";
 import { SectionStyle } from "../../styles/section";
 import { BlackPebble, WhitePebble } from "../pebble";

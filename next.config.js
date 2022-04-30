@@ -8,4 +8,7 @@ module.exports = {
   images: {
     domains: ["onitbucket.s3.ap-northeast-2.amazonaws.com"],
   },
+  extends: [
+    'plugin:@next/next/recommended',
+  ],
 };

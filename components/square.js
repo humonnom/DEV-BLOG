@@ -26,7 +26,7 @@ export const Square = ({ title, link, tags, guide, white }) => {
         </div>
       </Link>
     );
-  }, [tagsComp, link, title]);
+  }, [tagsComp, link, title, white]);
 
   const { compWithGuide } = useGuide({
     comp,

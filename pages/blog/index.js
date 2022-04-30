@@ -1,5 +1,5 @@
 import { Container } from "../../layouts/Layout";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { BlackPebble, WhitePebble } from "../../components/pebble";
 import { useInput } from "../../components/input";
 import Modal from "../../components/Modal";
