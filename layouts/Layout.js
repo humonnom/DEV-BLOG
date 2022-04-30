@@ -2,9 +2,8 @@
 import Head from "next/head";
 import Link from "next/link";
 import { css } from "@emotion/react";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { COLOR_STYLE, FlexCenter, FONT_SIZE } from "../styles/global";
-import { BlackTofu, Tofu, WhiteTofu } from "../components/tofu";
 
 export const HeadConf = () => {
   return (
@@ -84,7 +83,7 @@ const NavStyle = css`
   width: 100%;
   justify-content: space-around;
   align-items: center;
-  height: 4vh;
+  height: 2vh;
   z-index: 99;
   background-color: ${COLOR_STYLE.black};
 `;
@@ -96,5 +95,5 @@ const NavButtonStyle = css`
   width: 70px;
   height: 2vh;
   color: white;
-  font-size: ${FONT_SIZE.small};
+  font-size: ${FONT_SIZE.medium};
 `;
