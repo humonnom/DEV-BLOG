@@ -1,6 +1,5 @@
 import { css } from "@emotion/react";
 import React, { useMemo } from "react";
-import { Title } from "./title";
 import Link from "next/link";
 import useGuide from "../hooks/useGuide";
 import { BlackPebble } from "./pebble";
@@ -22,13 +21,12 @@ export const Square = ({ title, link, tags, guide, white }) => {
     return (
       <Link href={link} passHref>
         <div css={SquareStyle}>
-          <div />
-          <Title inside={title} padding={0} hasBorder={false} white={white} />
+          <p css={TitleStyle}>{title}</p>
           <ul css={TagsStyle}>{tagsComp}</ul>
         </div>
       </Link>
     );
-  }, [tagsComp, link, white, title]);
+  }, [tagsComp, link, title]);
 
   const { compWithGuide } = useGuide({
     comp,
@@ -51,13 +49,12 @@ const SquareContainerStyle = css`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 200px;
-  height: 130px;
+  width: 100%;
+  height: 30px;
 `;
 
 const SquareStyle = css`
   display: flex;
-  flex-direction: column;
   justify-content: space-around;
   align-items: center;
   width: 100%;
@@ -66,7 +63,6 @@ const SquareStyle = css`
 
 const TagsStyle = css`
   display: flex;
-  width: 80%;
   align-items: center;
   justify-content: space-around;
 `;
@@ -75,7 +71,16 @@ const TagStyle = css`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50px;
+  width: 30px;
   height: 20px;
+`;
+const TitleStyle = css`
+  display: flex;
+  margin: 3px;
+  width: 100%;
   font-size: ${FONT_SIZE.small};
+  &:hover {
+    background-color: black;
+    color: white;
+  }
 `;
