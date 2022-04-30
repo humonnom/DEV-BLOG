@@ -1,5 +1,5 @@
 import { Container } from "../../layouts/Layout";
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { BlackPebble, WhitePebble } from "../../components/pebble";
 import { useInput } from "../../components/input";
 import Modal from "../../components/Modal";
@@ -8,6 +8,10 @@ import { FlexCenter } from "../../styles/global";
 import { Square } from "../../components/square";
 import db from "../../utils/db";
 import GuideButtons from "../../components/guideButtons";
+import { useRequest } from "../../hooks/useRequest";
+import { arrayfy, slugify } from "../../hooks/utils";
+import { BlackTofu, WhiteTofu } from "../../components/tofu";
+import { ImageBox, TextBox } from "../../components/contents";
 
 export default function Blog({ postsData }) {
   const { comp, value } = useInput({ type: "password" });
@@ -27,7 +31,7 @@ export default function Blog({ postsData }) {
       const datas = postsData.filter((data) => !data.deleted);
       return datas.map((data) => {
         return (
-          <li key={data.id}>
+          <li key={data.id} css={PostStyle}>
             <Square
               title={data.title}
               link={`/blog/${data.slug}`}
@@ -47,12 +51,175 @@ export default function Blog({ postsData }) {
       return [{ inside: "login", action: () => setLoginModalOn(true) }];
     }
   }, [setLoginModalOn, setWritingModalOn, verified]);
+  const { comp: titleComp, value: titleValue} = useInput({ type: "text"});
+  const { comp: tagsComp, value: tagsValue} = useInput({ type: "text" });
+  const { comp: textComp, value: textValue , id:textId} = useInput({ type: "text", big: true });
+  const { comp: imgComp, value: imgValue , id:imgId} = useInput({ type: "text" });
+  const [currentItem, setCurrnetItem] = useState(-1);
+  const [contents, setContents] = useState([]);
+
+
+
+
+  useEffect(()=> {
+    console.log(textValue);
+  }, [textValue]);
+  
+
+  useEffect(()=> {
+    console.log(contents);
+  }, [contents]);
+
+  const setValue = useCallback((type, src) => {
+    const id = (type === "text") ? textId : imgId;
+    if (typeof document !== 'undefined'){
+      const input = document.getElementById(id);
+      if (input){
+        input.value = src || "";
+      }
+    }
+}, [imgId, textId]) 
+
+useEffect( () => {
+  if (currentItem === -1){
+    console.log("empty");
+    setValue("text", null);
+    setValue("img", null);
+  }
+}, [currentItem, setValue])
+
+  const editContents = useCallback((index) => {
+    const newArray = contents.slice();
+    const target = newArray[index];
+    target.src = target.type === "text" ? textValue : imgValue;
+    setContents(newArray);
+    setCurrnetItem(-1);
+  }, [contents, setCurrnetItem, imgValue, textValue]);
+
+  const addContents = useCallback((type) => {
+    const value = (type === "text") ? textValue : imgValue;
+    const current = {src: value, type};
+    if (contents.length === 0){
+      setContents([current]);
+    } else {
+      setContents([...contents, current]);
+    }
+    setCurrnetItem(-1);
+  }, [imgValue, textValue, contents, setCurrnetItem]);
+
+  const id = "post_" + new Date().toISOString();
+  const { res, request } = useRequest({
+    endpoint: `/api/post/${id}`,
+    method: "post",
+    data: {
+      contents,
+      deleted: false,
+      slug: slugify(titleValue),
+      tags: arrayfy(tagsValue),
+      title: titleValue,
+    },
+  });
+
+  const addContentsComp = useMemo(() => {
+        setValue("text", null);
+        setValue("img", null);
+        return (<>
+        <div css={addContentsStyle}>
+              <WhiteTofu
+                inside="(text)"
+                guide="텍스트 추가"
+                baby={<>{textComp}</>}
+              /> 
+              <div css={addContentsButtonStyle}>
+      <BlackTofu inside="add" action={() => addContents("text")}/>
+      </div>
+        </div>
+        <div css={addContentsStyle}>
+              <WhiteTofu
+                inside="(img)"
+                guide="이미지 추가"
+                baby={<>{imgComp}</>}
+              /> 
+        <div css={addContentsButtonStyle}>
+      <BlackTofu inside="add" action={() => addContents("img")}/>
+      </div>
+        </div>
+        </>)
+  }, [textComp, imgComp, addContents, setValue])
+
+
+  const contentsList = useMemo(() => {
+    return (
+      <>
+        {contents.map((content, index) => {
+          if (currentItem === index){
+            setValue(content.type, content.src); 
+            return (
+              <div css={addContentsStyle} key={Math.random()}>
+              <WhiteTofu
+              inside={content.type + ": "}
+              guide={content.type}
+              baby={<>{content.type === "text" ? textComp : imgComp}</>}
+            />
+            <div css={addContentsButtonStyle}>
+                  <BlackTofu inside="save" action={() => editContents(index)}/>
+                </div>
+              </div>
+            ) 
+          } else {
+            return (<div css ={addContentsStyle} key={Math.random()}>
+                {content.type === "text" && <TextBox inside={content.src}/>}
+                {content.type === "img" && <ImageBox src={content.src}/>}
+                <div css={addContentsButtonStyle}>
+                  <BlackTofu inside="edit" action={() => setCurrnetItem(index)}/>
+                </div>
+            </div>)
+          }
+        })}
+      </>
+    );
+  }, [contents, currentItem, imgComp, textComp, setValue, setCurrnetItem, editContents])
+
+  useEffect(() => {
+    if (res){
+      console.log(res);
+      alert("저장완료");
+      setWritingModalOn(false);
+    }
+  }, [res])
+
+  const postForm = useMemo(() => {
+    return (
+      <>
+      <div>
+
+       <WhiteTofu
+              inside="title: "
+              guide="제목"
+              baby={<>{titleComp}</>}
+            />
+       <WhiteTofu
+              inside="tags: "
+              guide="태그"
+              baby={<>{tagsComp}</>}
+            />
+      </div>
+      <div>
+      {contentsList}
+      {currentItem === -1 && <>{addContentsComp}</>}
+      </div>
+        <button type="button" onClick={request}>save post</button>
+      </>
+    );
+  }, [titleComp, currentItem, tagsComp, request, contentsList, addContentsComp])
 
   const Contents = useMemo(() => {
     return (
       <>
         {loginModalOn && (
-          <div>
+
+          <Modal contents={
+            <div>
             <div>
               <WhitePebble inside="pw: " baby={<>{comp}</>} />
             </div>
@@ -60,11 +227,15 @@ export default function Blog({ postsData }) {
               <BlackPebble inside="submit" action={submit} />
             </div>
           </div>
+          }
+            visible={loginModalOn}
+            close={() => setLoginModalOn(false)}
+          />
         )}
         <GuideButtons list={list} />
         {verified && writingModalOn && (
           <Modal
-            contents={<>add post comp</>}
+            contents={postForm}
             visible={writingModalOn}
             close={() => setWritingModalOn(false)}
           />
@@ -72,7 +243,7 @@ export default function Blog({ postsData }) {
         <div css={postsContainerStyle}>{posts}</div>
       </>
     );
-  }, [writingModalOn, comp, submit, loginModalOn, posts, list, verified]);
+  }, [writingModalOn, comp, submit, loginModalOn, posts, list, verified, postForm]);
   return <Container contents={Contents} />;
 }
 
@@ -90,5 +261,21 @@ export const getStaticProps = async () => {
 
 const postsContainerStyle = css`
   width: 100%;
+  background-color: red;
   ${FlexCenter}
 `;
+const PostStyle = css`
+  width: 100%;
+`;
+
+const addContentsStyle = css`
+width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+`;
+
+const addContentsButtonStyle = css`
+display: flex;
+width: 30px;
+`

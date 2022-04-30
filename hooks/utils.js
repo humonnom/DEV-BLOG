@@ -118,3 +118,25 @@ export const isOutOfDate = (date) => {
   const target = new Date(date);
   return today > target;
 };
+
+export const slugify = (str) => {
+  return str
+  .toLowerCase()
+  .trim()
+  .replace(/[^\w\s-]/g, '')
+  .replace(/[\s_-]+/g, '-')
+  .replace(/^-+|-+$/g, '');
+}
+
+export const arrayfy = (str) => {
+  const array = str
+  .toLowerCase()
+  .replace(/\s/g, '')
+  .trim()
+  .split(','); 
+  return array;
+}
+
+export const getTags = () => {
+  return ["js", "onit"];
+}

@@ -19,7 +19,6 @@ export default function Projects() {
   const Contents = useMemo(() => {
     return (
       <div css={ProjectsBodyStyle}>
-        {/* <div css={forFunStyle}>{compWithGuide}</div> */}
         <div css={forFunStyle}>{movieCompWithGuide}</div>
       </div>
     );
@@ -29,7 +28,6 @@ export default function Projects() {
 }
 
 const ProjectsBodyStyle = css`
-  min-height: 50vh;
 `;
 const forFunStyle = css`
   display: flex;

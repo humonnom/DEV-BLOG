@@ -49,7 +49,7 @@ const SquareContainerStyle = css`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 80%;
+  width: 100%;
   height: 30px;
 `;
 
@@ -65,13 +65,14 @@ const TagsStyle = css`
   display: flex;
   align-items: center;
   justify-content: space-around;
+  width: 20%;
 `;
 
 const TagStyle = css`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 30px;
+  width: 70px;
   height: 20px;
 `;
 const TitleStyle = css`

@@ -5,17 +5,20 @@ export const useInput = ({ type }) => {
   const [value, setValue] = useState("");
 
   const onChange = (event) => setValue(event.currentTarget.value);
-
+  const id = useMemo(() => Math.random(), []);
   const comp = useMemo(() => {
     return (
-      <input css={InputStyle} type={type} value={value} onChange={onChange} />
+      <input css={InputStyle} id={id} type={type} value={value} onChange={onChange} />
     );
-  }, [type, value]);
+  }, [type, value, id]);
 
   return {
     value,
     comp,
+    id
   };
 };
 
-const InputStyle = css``;
+const InputStyle = css`
+  height: 
+`;

@@ -23,6 +23,6 @@ export const getWidth = (type) => {
     `;
   }
   return css`
-    width: 250px;
+    width: 280px;
   `;
 };

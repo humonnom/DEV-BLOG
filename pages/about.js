@@ -93,7 +93,7 @@ export default function About() {
           <p css={SectionTitleStyle}>:: IMAGE BOX ::</p>
           <ImageBox
             white={true}
-            src="https://onitbucket.s3.ap-northeast-2.amazonaws.com/image/25%222022-03-15T15:53:22.612Z%22.jpeg"
+            src="https://user-images.githubusercontent.com/54441505/166110835-418d9371-41bb-4633-88d0-a1566a8bc4bd.jpeg"
           />
         </div>
         <div css={[SectionStyle, getRandomBorderRadius()]}>

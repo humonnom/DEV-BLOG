@@ -33,15 +33,16 @@ const TextStyle = (ascii) => {
   if (ascii) {
     return css`
       white-space: pre-wrap;
+      overflow: scroll;
     `;
   }
   return css`
     white-space: pre-line;
+  overflow: scroll;
   `;
 };
 
 export const ImageBox = ({ white, src }) => {
-  // const src =
   return (
     <div css={[ImageBoxStyle, getBorder(white)]}>
       <Image src={src} alt="banana tree" layout="fill" objectFit="cover" />
@@ -51,7 +52,7 @@ export const ImageBox = ({ white, src }) => {
 
 const ImageBoxStyle = css`
   display: block;
-  background-color: ${COLOR_STYLE.paleGrey};
+  background-color: ${COLOR_STYLE.black};
   position: relative;
   width: 300px;
   height: 350px;

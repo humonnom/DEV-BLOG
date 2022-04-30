@@ -63,8 +63,10 @@ export const COLOR_STYLE = {
   paleGrey: "#f5f7f8",
   brownishGrey: "#707070",
   black: "#000000",
+  green: "#0C7126",
+  beige: "#FCEBCE",
   orange: "#ff3d00",
-  coral: "#ff4545",
+  red: "#FE2E01",
 };
 
 export const BORDER_STYLE = {
