@@ -26,7 +26,11 @@ export default function Contact() {
               </Link>
             </div>
             <div css={InfoStyle}>
-              <BlackTofu inside="→ about this site" />
+              <Link href="/about">
+                <a>
+                  <BlackTofu inside="→ about this site" />
+                </a>
+              </Link>
             </div>
           </div>
         </div>

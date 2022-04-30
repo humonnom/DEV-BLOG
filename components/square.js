@@ -21,7 +21,7 @@ export const Square = ({ title, link, tags, guide, white }) => {
     return (
       <Link href={link} passHref>
         <div css={SquareStyle}>
-          <p css={TitleStyle}>{title}</p>
+          <p css={[TitleStyle, getColor(white)]}>{title}</p>
           <ul css={TagsStyle}>{tagsComp}</ul>
         </div>
       </Link>
@@ -49,7 +49,7 @@ const SquareContainerStyle = css`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 80%;
   height: 30px;
 `;
 
@@ -79,8 +79,24 @@ const TitleStyle = css`
   margin: 3px;
   width: 100%;
   font-size: ${FONT_SIZE.small};
-  &:hover {
-    background-color: black;
-    color: white;
-  }
 `;
+
+const getColor = (white) => {
+  if (white) {
+    return css`
+      color: white;
+      &:hover {
+        background-color: white;
+        color: black;
+      }
+    `;
+  } else {
+    return css`
+      color: black;
+      &:hover {
+        background-color: black;
+        color: white;
+      }
+    `;
+  }
+};
