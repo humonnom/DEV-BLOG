@@ -45,7 +45,7 @@ const TextStyle = (ascii) => {
 export const ImageBox = ({ white, src }) => {
   return (
     <div css={[ImageBoxStyle, getBorder(white)]}>
-      <Image src={src} alt="banana tree" layout="fill" objectFit="cover" />
+      <Image src={src} alt="banana tree" layout="fill" objectFit="contain" />
     </div>
   );
 };
