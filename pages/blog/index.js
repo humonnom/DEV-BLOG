@@ -23,6 +23,7 @@ export default function Blog({ postsData }) {
     if (value === process.env.NEXT_PUBLIC_ADMIN_PASSWORD) {
       setVerified(true);
       setLoginModalOn(false);
+      setWritingModalOn(true);
     }
   }, [value]);
 
@@ -48,7 +49,7 @@ export default function Blog({ postsData }) {
     if (verified) {
       return [{ inside: "+", action: () => setWritingModalOn(true) }];
     } else {
-      return [{ inside: "login", action: () => setLoginModalOn(true) }];
+      return [{ inside: "+", action: () => setLoginModalOn(true) }];
     }
   }, [setLoginModalOn, setWritingModalOn, verified]);
   const { comp: titleComp, value: titleValue} = useInput({ type: "text"});
@@ -57,9 +58,6 @@ export default function Blog({ postsData }) {
   const { comp: imgComp, value: imgValue , id:imgId} = useInput({ type: "text" });
   const [currentItem, setCurrnetItem] = useState(-1);
   const [contents, setContents] = useState([]);
-
-
-
 
   useEffect(()=> {
     console.log(textValue);
@@ -182,7 +180,6 @@ useEffect( () => {
 
   useEffect(() => {
     if (res){
-      console.log(res);
       alert("저장완료");
       setWritingModalOn(false);
     }

@@ -27,7 +27,7 @@ function Post({ data }) {
              data.contents.map((content) => {
               return (
                 <div key={Math.random()}>
-                {content.type === "text" && <TextBox inside={content.src}/>}
+                {content.type === "text" && <TextBox inside={content.src} ascii={content.ascii || false}/>}
                 {content.type === "img" && <ImageBox src={content.src}/>}
                 </div>
               );
