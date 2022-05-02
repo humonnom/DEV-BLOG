@@ -4,7 +4,7 @@ import { BlackPebble, WhitePebble } from "../../components/pebble";
 import { useInput } from "../../components/input";
 import Modal from "../../components/Modal";
 import { css } from "@emotion/react";
-import { FlexCenter } from "../../styles/global";
+import { COLOR_STYLE, FlexCenter } from "../../styles/global";
 import { Square } from "../../components/square";
 import db from "../../utils/db";
 import GuideButtons from "../../components/guideButtons";
@@ -14,8 +14,17 @@ import { BlackTofu, WhiteTofu } from "../../components/tofu";
 import { ImageBox, TextBox } from "../../components/contents";
 
 export default function Blog({ postsData }) {
+  const categoryList = useMemo(() => {
+    return [
+      {label: "js",color: COLOR_STYLE.green},
+      {label: "css",color: COLOR_STYLE.beige},
+      {label: "html",color: COLOR_STYLE.red},
+      {label: "react",color: COLOR_STYLE.white},
+  ];
+  }, []);
   const { comp, value } = useInput({ type: "password" });
   const [verified, setVerified] = useState(false);
+  const [category, setCategory] = useState(categoryList[0].label);
   const [writingModalOn, setWritingModalOn] = useState(false);
   const [loginModalOn, setLoginModalOn] = useState(false);
 
@@ -29,7 +38,7 @@ export default function Blog({ postsData }) {
 
   const posts = useMemo(() => {
     if (postsData) {
-      const datas = postsData.filter((data) => !data.deleted);
+      const datas = postsData.filter((data) => !data.deleted && data.tags.includes(category));
       return datas.map((data) => {
         return (
           <li key={data.id} css={PostStyle}>
@@ -43,30 +52,28 @@ export default function Blog({ postsData }) {
       });
     }
     return <></>;
-  }, [postsData]);
+  }, [postsData, category]);
 
   const list = useMemo(() => {
-    if (verified) {
-      return [{ inside: "+", action: () => setWritingModalOn(true) }];
-    } else {
-      return [{ inside: "+", action: () => setLoginModalOn(true) }];
-    }
-  }, [setLoginModalOn, setWritingModalOn, verified]);
+    const categoryButtonList = categoryList.map((element) => {
+      return {
+        inside: element.label,
+        action: () => setCategory(element.label),
+        selected: category === element.label,
+      }
+    })
+      return [
+        { inside: "+", action: () => setLoginModalOn(true) },
+        ...categoryButtonList,
+      ];
+  }, [setLoginModalOn, categoryList, category]);
+
   const { comp: titleComp, value: titleValue} = useInput({ type: "text"});
   const { comp: tagsComp, value: tagsValue} = useInput({ type: "text" });
   const { comp: textComp, value: textValue , id:textId} = useInput({ type: "text", big: true });
   const { comp: imgComp, value: imgValue , id:imgId} = useInput({ type: "text" });
   const [currentItem, setCurrnetItem] = useState(-1);
   const [contents, setContents] = useState([]);
-
-  useEffect(()=> {
-    console.log(textValue);
-  }, [textValue]);
-  
-
-  useEffect(()=> {
-    console.log(contents);
-  }, [contents]);
 
   const setValue = useCallback((type, src) => {
     const id = (type === "text") ? textId : imgId;
@@ -80,7 +87,6 @@ export default function Blog({ postsData }) {
 
 useEffect( () => {
   if (currentItem === -1){
-    console.log("empty");
     setValue("text", null);
     setValue("img", null);
   }

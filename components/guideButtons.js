@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 import React, { useMemo } from "react";
-import { WhitePebble } from "./pebble";
+import { BlackPebble, WhitePebble } from "./pebble";
 
 function GuideButtons({ list }) {
   const comp = useMemo(() => {
@@ -9,7 +9,8 @@ function GuideButtons({ list }) {
         {list.map((element) => {
           return (
             <div key={Math.random()} css={ButtonStyle}>
-              <WhitePebble inside={element.inside} action={element.action} />
+              {!element.selected && <WhitePebble inside={element.inside} action={element.action} />}
+              {element.selected && <BlackPebble inside={element.inside} action={element.action} />}
             </div>
           );
         })}
@@ -27,7 +28,7 @@ const ButtonContainerStyle = css`
   align-items: center;
   top: 4vh;
   height: 4vh;
-  z-index: 999;
+  z-index: 99;
 `;
 const ButtonStyle = css`
   height: 2vh;

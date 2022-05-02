@@ -9,7 +9,6 @@ const PostComp = (props) => {
     return <div>loading</div>;
   } else {
     if (entry) {
-      console.log(entry);
       return <Post data={entry} />;
     } else {
       return <div>not found</div>;
