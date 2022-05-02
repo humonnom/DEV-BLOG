@@ -20,6 +20,8 @@ export default function Blog({ postsData }) {
       {label: "css",color: COLOR_STYLE.beige},
       {label: "html",color: COLOR_STYLE.red},
       {label: "react",color: COLOR_STYLE.white},
+      {label: "next.js",color: COLOR_STYLE.white},
+      {label: "python",color: COLOR_STYLE.white},
   ];
   }, []);
   const { comp, value } = useInput({ type: "password" });
