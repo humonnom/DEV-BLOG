@@ -1,6 +1,6 @@
 import React from "react";
 
-function Brick({ inside, width, height }) {
+function Brick({ inside }) {
   return (
     <div>
       <p>{inside}</p>
