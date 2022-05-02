@@ -36,6 +36,7 @@ export default function Blog({ postsData }) {
     }
   }, [value]);
 
+ 
   const posts = useMemo(() => {
     if (postsData) {
       const datas = postsData.filter((data) => !data.deleted && data.tags.includes(category));
@@ -70,12 +71,15 @@ export default function Blog({ postsData }) {
 
   const { comp: titleComp, value: titleValue} = useInput({ type: "text"});
   const { comp: tagsComp, value: tagsValue} = useInput({ type: "text" });
-  const { comp: textComp, value: textValue , id:textId} = useInput({ type: "text", big: true });
-  const { comp: imgComp, value: imgValue , id:imgId} = useInput({ type: "text" });
-  const [currentItem, setCurrnetItem] = useState(-1);
+  const { comp: textComp, value: textValue , id:textId} = useInput({ type: "text", textarea: true });
+  const { comp: imgComp, value: imgValue , id:imgId} = useInput({ type: "text",textarea: true });
+  const [currentItem, setCurrentItem] = useState(-1);
   const [contents, setContents] = useState([]);
+  
+
 
   const setValue = useCallback((type, src) => {
+    console.log(src);
     const id = (type === "text") ? textId : imgId;
     if (typeof document !== 'undefined'){
       const input = document.getElementById(id);
@@ -85,20 +89,23 @@ export default function Blog({ postsData }) {
     }
 }, [imgId, textId]) 
 
-useEffect( () => {
+useEffect(() => {
+  console.log(currentItem)
   if (currentItem === -1){
     setValue("text", null);
     setValue("img", null);
+  } else {
+    setValue(contents[currentItem].type, contents[currentItem].src);
   }
-}, [currentItem, setValue])
+}, [contents, currentItem, setValue])
 
   const editContents = useCallback((index) => {
     const newArray = contents.slice();
     const target = newArray[index];
     target.src = target.type === "text" ? textValue : imgValue;
     setContents(newArray);
-    setCurrnetItem(-1);
-  }, [contents, setCurrnetItem, imgValue, textValue]);
+    setCurrentItem(-1);
+  }, [contents, setCurrentItem, imgValue, textValue]);
 
   const addContents = useCallback((type) => {
     const value = (type === "text") ? textValue : imgValue;
@@ -108,8 +115,8 @@ useEffect( () => {
     } else {
       setContents([...contents, current]);
     }
-    setCurrnetItem(-1);
-  }, [imgValue, textValue, contents, setCurrnetItem]);
+    setCurrentItem(-1);
+  }, [imgValue, textValue, contents, setCurrentItem]);
 
   const id = "post_" + new Date().toISOString();
   const { res, request } = useRequest({
@@ -125,8 +132,6 @@ useEffect( () => {
   });
 
   const addContentsComp = useMemo(() => {
-        setValue("text", null);
-        setValue("img", null);
         return (<>
         <div css={addContentsStyle}>
               <WhiteTofu
@@ -149,7 +154,7 @@ useEffect( () => {
       </div>
         </div>
         </>)
-  }, [textComp, imgComp, addContents, setValue])
+  }, [textComp, imgComp, addContents])
 
 
   const contentsList = useMemo(() => {
@@ -157,7 +162,7 @@ useEffect( () => {
       <>
         {contents.map((content, index) => {
           if (currentItem === index){
-            setValue(content.type, content.src); 
+            
             return (
               <div css={addContentsStyle} key={Math.random()}>
               <WhiteTofu
@@ -175,14 +180,16 @@ useEffect( () => {
                 {content.type === "text" && <TextBox inside={content.src}/>}
                 {content.type === "img" && <ImageBox src={content.src}/>}
                 <div css={addContentsButtonStyle}>
-                  <BlackTofu inside="edit" action={() => setCurrnetItem(index)}/>
+                  <BlackTofu inside="edit" action={() => 
+                    setCurrentItem(index)
+                  }/>
                 </div>
             </div>)
           }
         })}
       </>
     );
-  }, [contents, currentItem, imgComp, textComp, setValue, setCurrnetItem, editContents])
+  }, [contents, currentItem, imgComp, textComp, setCurrentItem, editContents])
 
   useEffect(() => {
     if (res){
