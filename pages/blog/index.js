@@ -21,8 +21,8 @@ export default function Blog({ postsData }) {
       {label: "html",color: COLOR_STYLE.red},
       {label: "react",color: COLOR_STYLE.white},
       {label: "next.js",color: COLOR_STYLE.white},
-      {label: "python",color: COLOR_STYLE.white},
       {label: "os",color: COLOR_STYLE.white},
+      {label: "article",color: COLOR_STYLE.white},
   ];
   }, []);
   const { comp, value } = useInput({ type: "password" });
