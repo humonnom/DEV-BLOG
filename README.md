@@ -1,9 +1,22 @@
-## Getting Started
+## 블로그
 
-First, run the development server:
+### 블로그의 목적:
+   - 개발 관련 기록
+   - 미니프로젝트 배포
+   - 최적화, UX/UI 공부 및 연구
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+### 사용한 기술
+   - Next.js
+   - Firebase
+
+### 카테고리 설명
+   - HOME: 메인 페이지
+   - BLOG: 카테고리 별로 분류된 게시글 목록
+   - PROJECT: 미니 프로젝트로 이동할 수 있는 페이지
+   - CONTACT: 연락처, 메일 등의 정보와 메세지를 남길 수 있는 폼으로 구성
+
+### 미니 프로젝트
+   - movie-mate: 영화를 같이 보러 갈 사람을 구할 수 있는 사이트
+
+### 배포
+   - vercel로 배포
