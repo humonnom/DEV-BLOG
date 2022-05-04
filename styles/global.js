@@ -1,4 +1,5 @@
 import { css, Global } from "@emotion/react";
+import facepaint from 'facepaint'
 
 export const globalStyles = (
   <Global
@@ -43,6 +44,12 @@ export const globalStyles = (
     `}
   />
 );
+
+const breakpoints = [576, 768]
+
+export const mq = facepaint(
+  breakpoints.map(bp => `@media (min-width: ${bp}px)`)
+)
 
 export const SHADOW_STYLE = {
   pale: " 3px 0px 20px -5px rgba(0, 0, 0, 0.09)",

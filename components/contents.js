@@ -1,13 +1,14 @@
 import React from "react";
 import Image from "next/image";
 import { css } from "@emotion/react";
-import { COLOR_STYLE, FONT_SIZE } from "../styles/global";
+import { COLOR_STYLE, FONT_SIZE, mq } from "../styles/global";
 import { getPadding, getWidth } from "../styles/getter";
 import { getBackground, getBorder, getColor } from "../hooks/utils";
 
 export const TextBox = ({ inside, padding, widthType, ascii, white }) => {
   const paddingH = 5;
   const paddingW = padding || 10;
+  const width = getWidth(widthType) - paddingW * 2;
   return (
     <div
       css={[
@@ -16,7 +17,7 @@ export const TextBox = ({ inside, padding, widthType, ascii, white }) => {
         getBorder(white),
         getPadding(paddingH, paddingW),
         getBackground(white),
-        getWidth(widthType),
+        GetSize(width),   
       ]}
     >
       <p css={[TextStyle(ascii)]}>{inside}</p>
@@ -24,10 +25,17 @@ export const TextBox = ({ inside, padding, widthType, ascii, white }) => {
   );
 };
 
+const GetFontSize = () => {
+  return mq({
+    fontSize: [FONT_SIZE.small, FONT_SIZE.medium],
+  });
+}
+
 const TextBoxStyle = css`
   display: flex;
-  font-size: ${FONT_SIZE.small};
+  ${GetFontSize()};
 `;
+
 
 const TextStyle = (ascii) => {
   if (ascii) {
@@ -38,13 +46,14 @@ const TextStyle = (ascii) => {
   }
   return css`
     white-space: pre-line;
-  overflow: scroll;
+    overflow: scroll;
   `;
 };
 
 export const ImageBox = ({ white, src }) => {
+  const width = getWidth();
   return (
-    <div css={[ImageBoxStyle, getBorder(white)]}>
+    <div css={[ImageBoxStyle, GetSize(width, 350), getBorder(white)]}>
       <Image src={src} alt="banana tree" layout="fill" objectFit="contain" />
     </div>
   );
@@ -54,6 +63,13 @@ const ImageBoxStyle = css`
   display: block;
   background-color: ${COLOR_STYLE.black};
   position: relative;
-  width: 300px;
-  height: 350px;
+  
 `;
+
+const GetSize = (width, height) => {
+  const hArray = !height ? ['auto', 'auto'] : [height, height + 200];
+  return mq({
+    width: [width, width + 200],
+    height: hArray,
+  });
+}

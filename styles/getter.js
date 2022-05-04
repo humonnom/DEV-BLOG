@@ -12,17 +12,8 @@ export const getPadding = (height, width) => {
 };
 
 export const getWidth = (type) => {
-  if (type === "wide") {
-    return css`
-      width: 300px;
-    `;
-  }
   if (type === "narrow") {
-    return css`
-      width: 200px;
-    `;
+      return 200;
   }
-  return css`
-    width: 280px;
-  `;
+    return 300;
 };

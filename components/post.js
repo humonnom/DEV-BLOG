@@ -16,10 +16,7 @@ function Post({ data }) {
        <GuideButtons list={list} />
         <div>
           {data.title}
-          <p css={css`
-            font-size: ${FONT_SIZE.small};
-            color: ${COLOR_STYLE.green};
-          `}>
+          <p css={DateStyle}>
             {data.created}
           </p>
           <div>
@@ -43,3 +40,7 @@ function Post({ data }) {
 
 export default Post;
 
+const DateStyle = css`
+font-size: ${FONT_SIZE.small};
+color: ${COLOR_STYLE.green};
+`;
