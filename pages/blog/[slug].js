@@ -5,11 +5,12 @@ import Post from "../../components/post";
 const PostComp = (props) => {
   const { entry } = props;
   const router = useRouter();
+  const category = router.query.category;
   if (router.isFallback) {
     return <div>loading</div>;
   } else {
     if (entry) {
-      return <Post data={entry} />;
+      return <Post data={entry} category={category}/>;
     } else {
       return <div>not found</div>;
     }

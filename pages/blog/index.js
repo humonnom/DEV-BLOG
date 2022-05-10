@@ -12,6 +12,7 @@ import { useRequest } from "../../hooks/useRequest";
 import { arrayfy, slugify } from "../../hooks/utils";
 import { BlackTofu, WhiteTofu } from "../../components/tofu";
 import { ImageBox, TextBox } from "../../components/contents";
+import { useRouter } from "next/router";
 
 export default function Blog({ postsData }) {
   const categoryList = useMemo(() => {
@@ -25,12 +26,14 @@ export default function Blog({ postsData }) {
       {label: "else",color: COLOR_STYLE.white},
   ];
   }, []);
+  const router = useRouter();
+  const category = useMemo(() => {
+    return (router.query.category) || categoryList[0].label;
+  }, [router, categoryList]);
   const { comp, value } = useInput({ type: "password" });
   const [verified, setVerified] = useState(false);
-  const [category, setCategory] = useState(categoryList[0].label);
   const [writingModalOn, setWritingModalOn] = useState(false);
   const [loginModalOn, setLoginModalOn] = useState(false);
-
   const submit = useCallback(() => {
     if (value === process.env.NEXT_PUBLIC_ADMIN_PASSWORD) {
       setVerified(true);
@@ -48,7 +51,7 @@ export default function Blog({ postsData }) {
           <li key={data.id} css={PostStyle}>
             <Square
               title={data.title}
-              link={`/blog/${data.slug}`}
+              link={`/blog/${data.slug}?category=${category}`}
               tags={data.tags}
             />
           </li>
@@ -62,7 +65,12 @@ export default function Blog({ postsData }) {
     const categoryButtonList = categoryList.map((element) => {
       return {
         inside: element.label,
-        action: () => setCategory(element.label),
+        action: () => {
+          router.push({
+            pathname: '/blog',
+            query: {category: element.label},
+          }, undefined, {shallow: true})
+        },
         selected: category === element.label,
       }
     })
@@ -70,7 +78,7 @@ export default function Blog({ postsData }) {
         { inside: "+", action: () => setLoginModalOn(true) },
         ...categoryButtonList,
       ];
-  }, [setLoginModalOn, categoryList, category]);
+  }, [setLoginModalOn, categoryList, category, router]);
 
   const { comp: titleComp, value: titleValue} = useInput({ type: "text"});
   const { comp: tagsComp, value: tagsValue} = useInput({ type: "text" });
@@ -82,7 +90,6 @@ export default function Blog({ postsData }) {
 
 
   const setValue = useCallback((type, src) => {
-    console.log(src);
     const id = (type === "text") ? textId : imgId;
     if (typeof document !== 'undefined'){
       const input = document.getElementById(id);
@@ -93,7 +100,6 @@ export default function Blog({ postsData }) {
 }, [imgId, textId]) 
 
 useEffect(() => {
-  console.log(currentItem)
   if (currentItem === -1){
     setValue("text", null);
     setValue("img", null);

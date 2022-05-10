@@ -6,11 +6,13 @@ import { COLOR_STYLE, FONT_SIZE } from '../styles/global';
 import { ImageBox, TextBox } from "./contents";
 import GuideButtons from "./guideButtons";
 
-function Post({ data }) {
+function Post({ data, category }) {
   const router = useRouter();
-  
   const Contents = useMemo(() => {
-    const list = [{ inside: "back", action: () => router.back() }];
+    const list = [{ inside: "back", action: () => router.push({
+      pathname: '/blog',  
+      query: {category}
+    })}];
     return (
       <>
        <GuideButtons list={list} />
