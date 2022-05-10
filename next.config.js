@@ -6,7 +6,7 @@ module.exports = {
     PORT: 3000,
   },
   images: {
-    domains: ["onitbucket.s3.ap-northeast-2.amazonaws.com", "user-images.githubusercontent.com", "s3.us-west-2.amazonaws.com", "img1.daumcdn.net"],
+    domains: ["onitbucket.s3.ap-northeast-2.amazonaws.com", "user-images.githubusercontent.com", "s3.us-west-2.amazonaws.com", "img1.daumcdn.net", "upload.wikimedia.org"],
   },
   extends: [
     'plugin:@next/next/recommended',

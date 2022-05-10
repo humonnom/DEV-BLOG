@@ -1,6 +1,6 @@
 import React from "react";
-import Image from "next/image";
 import { css } from "@emotion/react";
+import Image from "next/image";
 import { COLOR_STYLE, FONT_SIZE, mq } from "../styles/global";
 import { getPadding, getWidth } from "../styles/getter";
 import { getBackground, getBorder, getColor } from "../hooks/utils";
