@@ -7,7 +7,13 @@ import { css } from "@emotion/react";
 import { Square } from "../components/square";
 import { FlexCenter } from "../styles/global";
 import { getRandomBorderRadius } from "../hooks/utils";
-import { SectionStyle, getSectionWidth, SectionTitleStyle } from "../styles/section";
+import {
+  SectionStyle,
+  getSectionWidth,
+  SectionTitleStyle,
+} from "../styles/section";
+import Link from "next/link";
+import { BlackTofu } from "../components/tofu";
 
 export default function About() {
   const Contents = (
@@ -108,6 +114,15 @@ export default function About() {
           <Square title="Article2" link="/about" tags={["js", "react"]} />
         </div>
       </div>
+      <div css={PageTitle}>
+        <Title inside="Github repo of this site" />
+      </div>
+      <Link href="https://github.com/humonnom/DEV-BLOG">
+        <a>
+          <BlackTofu inside="https://github.com/humonnom/DEV-BLOG" guide="click to move">
+          </BlackTofu>
+        </a>
+      </Link>
     </div>
   );
   return <Container contents={Contents} />;
