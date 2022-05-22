@@ -8,9 +8,9 @@ import { COLOR_STYLE, FlexCenter, FONT_SIZE } from "../styles/global";
 export const HeadConf = () => {
   return (
     <Head>
-      <title>Jueun park&apos;s Dev blog</title>
+      <title>pre-production</title>
       <meta name="author" content="humonnom" />
-      <link rel="icon" href="/favicon.ico" />
+      <link rel="icon" href="/static/favicon.ico" />
     </Head>
   );
 };

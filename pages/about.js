@@ -7,7 +7,7 @@ import { css } from "@emotion/react";
 import { Square } from "../components/square";
 import { FlexCenter } from "../styles/global";
 import { getRandomBorderRadius } from "../hooks/utils";
-import { SectionStyle, SectionTitleStyle } from "../styles/section";
+import { SectionStyle, getSectionWidth, SectionTitleStyle } from "../styles/section";
 
 export default function About() {
   const Contents = (
@@ -16,7 +16,7 @@ export default function About() {
         <Title inside="Components of this site" />
       </div>
       <div css={[FlexCenter]}>
-        <div css={[SectionStyle, getRandomBorderRadius()]}>
+        <div css={[SectionStyle, getSectionWidth(), getRandomBorderRadius()]}>
           <div css={PebbleContainer}>
             <p css={SectionTitleStyle}>:: PEBBLE ::</p>
             <div>
@@ -43,7 +43,7 @@ export default function About() {
           </div>
         </div>
 
-        <div css={[SectionStyle, getRandomBorderRadius()]}>
+        <div css={[SectionStyle, getSectionWidth(), getRandomBorderRadius()]}>
           <p css={SectionTitleStyle}>:: TITLE ::</p>
           <div>
             <Title inside="Hello to you" white={true} />
@@ -59,7 +59,7 @@ export default function About() {
             <Title inside="this is a covered type title" hasBorder={true} />
           </div>
         </div>
-        <div css={[SectionStyle, getRandomBorderRadius()]}>
+        <div css={[SectionStyle, getSectionWidth(), getRandomBorderRadius()]}>
           <p css={SectionTitleStyle}>:: TEXT BOX ::</p>
 
           <div>
@@ -89,14 +89,14 @@ export default function About() {
             />
           </div>
         </div>
-        <div css={[SectionStyle, getRandomBorderRadius()]}>
+        <div css={[SectionStyle, getSectionWidth(), getRandomBorderRadius()]}>
           <p css={SectionTitleStyle}>:: IMAGE BOX ::</p>
           <ImageBox
             white={true}
             src="https://user-images.githubusercontent.com/54441505/166110835-418d9371-41bb-4633-88d0-a1566a8bc4bd.jpeg"
           />
         </div>
-        <div css={[SectionStyle, getRandomBorderRadius()]}>
+        <div css={[SectionStyle, getSectionWidth(), getRandomBorderRadius()]}>
           <p css={SectionTitleStyle}>:: SQUARE ::</p>
           <Square
             title="Article"

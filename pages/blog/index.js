@@ -165,13 +165,12 @@ useEffect(() => {
         </>)
   }, [textComp, imgComp, addContents])
 
-
   const contentsList = useMemo(() => {
     return (
       <>
         {contents.map((content, index) => {
+          console.log('contentList rerender');
           if (currentItem === index){
-            
             return (
               <div css={addContentsStyle} key={Math.random()}>
               <WhiteTofu
