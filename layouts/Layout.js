@@ -8,8 +8,11 @@ import { COLOR_STYLE, FlexCenter, FONT_SIZE } from "../styles/global";
 export const HeadConf = () => {
   return (
     <Head>
-      <title>pre-production</title>
+      <title>J u e p a r k</title>
       <meta name="author" content="humonnom" />
+      <meta property="og:title" content="Juepark Dev Blog"/>
+      <meta property="og:description" content="틈틈이 튼튼히"/>
+      <meta property="og:image" content="{{ url_for('static', filename='ogimg.jpeg')}}"/>
       <link rel="icon" href="/static/favicon.ico" />
     </Head>
   );
