@@ -36,7 +36,7 @@ function Post({ data, category }) {
         </div>
       </>
     );
-  }, [data, router]);
+  }, [data, router, category]);
   return <Container contents={Contents} />;
 }
 

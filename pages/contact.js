@@ -1,9 +1,9 @@
 import { css } from "@emotion/react";
-import Link from "next/link";
 import { BlackTofu } from "../components/tofu";
 import { Container } from "../layouts/Layout";
 import { FONT_SIZE } from "../styles/global";
 import { ContactForm } from "../components/contactForm";
+import Link from "next/link";
 
 export default function Contact() {
   const Contents = (
@@ -57,6 +57,8 @@ const ContentsContainerStyle = css`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  background-image: url("/static/ogimg.jpeg");
+  background-size: contain; 
 `;
 const InfoContainerStyle = css`
   display: flex;

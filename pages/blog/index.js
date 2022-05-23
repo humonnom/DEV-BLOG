@@ -17,18 +17,18 @@ import { useRouter } from "next/router";
 export default function Blog({ postsData }) {
   const categoryList = useMemo(() => {
     return [
-      {label: "js",color: COLOR_STYLE.green},
-      {label: "html",color: COLOR_STYLE.red},
-      {label: "css",color: COLOR_STYLE.red},
-      {label: "react",color: COLOR_STYLE.white},
-      {label: "os",color: COLOR_STYLE.white},
-      {label: "article",color: COLOR_STYLE.white},
-      {label: "else",color: COLOR_STYLE.white},
-  ];
+      { label: "js", color: COLOR_STYLE.green },
+      { label: "html", color: COLOR_STYLE.red },
+      { label: "css", color: COLOR_STYLE.red },
+      { label: "react", color: COLOR_STYLE.white },
+      { label: "os", color: COLOR_STYLE.white },
+      { label: "article", color: COLOR_STYLE.white },
+      { label: "else", color: COLOR_STYLE.white },
+    ];
   }, []);
   const router = useRouter();
   const category = useMemo(() => {
-    return (router.query.category) || categoryList[0].label;
+    return router.query.category || categoryList[0].label;
   }, [router, categoryList]);
   const { comp, value } = useInput({ type: "password" });
   const [verified, setVerified] = useState(false);
@@ -42,10 +42,11 @@ export default function Blog({ postsData }) {
     }
   }, [value]);
 
- 
   const posts = useMemo(() => {
     if (postsData) {
-      const datas = postsData.filter((data) => !data.deleted && data.tags.includes(category));
+      const datas = postsData.filter(
+        (data) => !data.deleted && data.tags.includes(category)
+      );
       return datas.map((data) => {
         return (
           <li key={data.id} css={PostStyle}>
@@ -66,66 +67,85 @@ export default function Blog({ postsData }) {
       return {
         inside: element.label,
         action: () => {
-          router.push({
-            pathname: '/blog',
-            query: {category: element.label},
-          }, undefined, {shallow: true})
+          router.push(
+            {
+              pathname: "/blog",
+              query: { category: element.label },
+            },
+            undefined,
+            { shallow: true }
+          );
         },
         selected: category === element.label,
-      }
-    })
-      return [
-        { inside: "+", action: () => setLoginModalOn(true) },
-        ...categoryButtonList,
-      ];
+      };
+    });
+    return [
+      { inside: "+", action: () => setLoginModalOn(true) },
+      ...categoryButtonList,
+    ];
   }, [setLoginModalOn, categoryList, category, router]);
 
-  const { comp: titleComp, value: titleValue} = useInput({ type: "text"});
-  const { comp: tagsComp, value: tagsValue} = useInput({ type: "text" });
-  const { comp: textComp, value: textValue , id:textId} = useInput({ type: "text", textarea: true });
-  const { comp: imgComp, value: imgValue , id:imgId} = useInput({ type: "text",textarea: true });
+  const { comp: titleComp, value: titleValue } = useInput({ type: "text" });
+  const { comp: tagsComp, value: tagsValue } = useInput({ type: "text" });
+  const {
+    comp: textComp,
+    value: textValue,
+    id: textId,
+  } = useInput({ type: "text", textarea: true });
+  const {
+    comp: imgComp,
+    value: imgValue,
+    id: imgId,
+  } = useInput({ type: "text", textarea: true });
   const [currentItem, setCurrentItem] = useState(-1);
   const [contents, setContents] = useState([]);
-  
 
-
-  const setValue = useCallback((type, src) => {
-    const id = (type === "text") ? textId : imgId;
-    if (typeof document !== 'undefined'){
-      const input = document.getElementById(id);
-      if (input){
-        input.value = src || "";
+  const setValue = useCallback(
+    (type, src) => {
+      const id = type === "text" ? textId : imgId;
+      if (typeof document !== "undefined") {
+        const input = document.getElementById(id);
+        if (input) {
+          input.value = src || "";
+        }
       }
-    }
-}, [imgId, textId]) 
+    },
+    [imgId, textId]
+  );
 
-useEffect(() => {
-  if (currentItem === -1){
-    setValue("text", null);
-    setValue("img", null);
-  } else {
-    setValue(contents[currentItem].type, contents[currentItem].src);
-  }
-}, [contents, currentItem, setValue])
-
-  const editContents = useCallback((index) => {
-    const newArray = contents.slice();
-    const target = newArray[index];
-    target.src = target.type === "text" ? textValue : imgValue;
-    setContents(newArray);
-    setCurrentItem(-1);
-  }, [contents, setCurrentItem, imgValue, textValue]);
-
-  const addContents = useCallback((type) => {
-    const value = (type === "text") ? textValue : imgValue;
-    const current = {src: value, type};
-    if (contents.length === 0){
-      setContents([current]);
+  useEffect(() => {
+    if (currentItem === -1) {
+      setValue("text", null);
+      setValue("img", null);
     } else {
-      setContents([...contents, current]);
+      setValue(contents[currentItem].type, contents[currentItem].src);
     }
-    setCurrentItem(-1);
-  }, [imgValue, textValue, contents, setCurrentItem]);
+  }, [contents, currentItem, setValue]);
+
+  const editContents = useCallback(
+    (index) => {
+      const newArray = contents.slice();
+      const target = newArray[index];
+      target.src = target.type === "text" ? textValue : imgValue;
+      setContents(newArray);
+      setCurrentItem(-1);
+    },
+    [contents, setCurrentItem, imgValue, textValue]
+  );
+
+  const addContents = useCallback(
+    (type) => {
+      const value = type === "text" ? textValue : imgValue;
+      const current = { src: value, type };
+      if (contents.length === 0) {
+        setContents([current]);
+      } else {
+        setContents([...contents, current]);
+      }
+      setCurrentItem(-1);
+    },
+    [imgValue, textValue, contents, setCurrentItem]
+  );
 
   const id = "post_" + new Date().toISOString();
   const { res, request } = useRequest({
@@ -141,111 +161,112 @@ useEffect(() => {
   });
 
   const addContentsComp = useMemo(() => {
-        return (<>
+    return (
+      <>
         <div css={addContentsStyle}>
-              <WhiteTofu
-                inside="(text)"
-                guide="텍스트 추가"
-                baby={<>{textComp}</>}
-              /> 
-              <div css={addContentsButtonStyle}>
-      <BlackTofu inside="add" action={() => addContents("text")}/>
-      </div>
+          <WhiteTofu
+            inside="(text)"
+            guide="텍스트 추가"
+            baby={<>{textComp}</>}
+          />
+          <div css={addContentsButtonStyle}>
+            <BlackTofu inside="add" action={() => addContents("text")} />
+          </div>
         </div>
         <div css={addContentsStyle}>
-              <WhiteTofu
-                inside="(img)"
-                guide="이미지 추가"
-                baby={<>{imgComp}</>}
-              /> 
-        <div css={addContentsButtonStyle}>
-      <BlackTofu inside="add" action={() => addContents("img")}/>
-      </div>
+          <WhiteTofu inside="(img)" guide="이미지 추가" baby={<>{imgComp}</>} />
+          <div css={addContentsButtonStyle}>
+            <BlackTofu inside="add" action={() => addContents("img")} />
+          </div>
         </div>
-        </>)
-  }, [textComp, imgComp, addContents])
+      </>
+    );
+  }, [textComp, imgComp, addContents]);
 
   const contentsList = useMemo(() => {
     return (
       <>
         {contents.map((content, index) => {
-          console.log('contentList rerender');
-          if (currentItem === index){
+          console.log("contentList rerender");
+          if (currentItem === index) {
             return (
               <div css={addContentsStyle} key={Math.random()}>
-              <WhiteTofu
-              inside={content.type + ": "}
-              guide={content.type}
-              baby={<>{content.type === "text" ? textComp : imgComp}</>}
-            />
-            <div css={addContentsButtonStyle}>
-                  <BlackTofu inside="save" action={() => editContents(index)}/>
+                <WhiteTofu
+                  inside={content.type + ": "}
+                  guide={content.type}
+                  baby={<>{content.type === "text" ? textComp : imgComp}</>}
+                />
+                <div css={addContentsButtonStyle}>
+                  <BlackTofu inside="save" action={() => editContents(index)} />
                 </div>
               </div>
-            ) 
+            );
           } else {
-            return (<div css ={addContentsStyle} key={Math.random()}>
-                {content.type === "text" && <TextBox inside={content.src}/>}
-                {content.type === "img" && <ImageBox src={content.src}/>}
+            return (
+              <div css={addContentsStyle} key={Math.random()}>
+                {content.type === "text" && <TextBox inside={content.src} />}
+                {content.type === "img" && <ImageBox src={content.src} />}
                 <div css={addContentsButtonStyle}>
-                  <BlackTofu inside="edit" action={() => 
-                    setCurrentItem(index)
-                  }/>
+                  <BlackTofu
+                    inside="edit"
+                    action={() => setCurrentItem(index)}
+                  />
                 </div>
-            </div>)
+              </div>
+            );
           }
         })}
       </>
     );
-  }, [contents, currentItem, imgComp, textComp, setCurrentItem, editContents])
+  }, [contents, currentItem, imgComp, textComp, setCurrentItem, editContents]);
 
   useEffect(() => {
-    if (res){
+    if (res) {
       alert("저장완료");
       setWritingModalOn(false);
     }
-  }, [res])
+  }, [res]);
 
   const postForm = useMemo(() => {
     return (
       <>
-      <div>
-
-       <WhiteTofu
-              inside="title: "
-              guide="제목"
-              baby={<>{titleComp}</>}
-            />
-       <WhiteTofu
-              inside="tags: "
-              guide="태그"
-              baby={<>{tagsComp}</>}
-            />
-      </div>
-      <div>
-      {contentsList}
-      {currentItem === -1 && <>{addContentsComp}</>}
-      </div>
-        <button type="button" onClick={request}>save post</button>
+        <div>
+          <WhiteTofu inside="title: " guide="제목" baby={<>{titleComp}</>} />
+          <WhiteTofu inside="tags: " guide="태그" baby={<>{tagsComp}</>} />
+        </div>
+        <div>
+          {contentsList}
+          {currentItem === -1 && <>{addContentsComp}</>}
+        </div>
+        <button type="button" onClick={request}>
+          save post
+        </button>
       </>
     );
-  }, [titleComp, currentItem, tagsComp, request, contentsList, addContentsComp])
+  }, [
+    titleComp,
+    currentItem,
+    tagsComp,
+    request,
+    contentsList,
+    addContentsComp,
+  ]);
 
   const Contents = useMemo(() => {
     return (
       <>
         {loginModalOn && (
-
-          <Modal contents={
-            <div>
-            <div>
-              <WhitePebble inside="pw: " baby={<>{comp}</>} />
-            </div>
-            <div>
-              <BlackPebble inside="submit" action={submit} />
-            </div>
-          </div>
-          }
+          <Modal
+            contents={
+              <div>
+                <div>
+                  <WhitePebble inside="pw: " baby={<>{comp}</>} />
+                </div>
+                <div>
+                  <BlackPebble inside="submit" action={submit} />
+                </div>
+              </div>
+            }
             visible={loginModalOn}
             close={() => setLoginModalOn(false)}
           />
@@ -261,7 +282,16 @@ useEffect(() => {
         <div css={postsContainerStyle}>{posts}</div>
       </>
     );
-  }, [writingModalOn, comp, submit, loginModalOn, posts, list, verified, postForm]);
+  }, [
+    writingModalOn,
+    comp,
+    submit,
+    loginModalOn,
+    posts,
+    list,
+    verified,
+    postForm,
+  ]);
   return <Container contents={Contents} />;
 }
 
@@ -279,21 +309,21 @@ export const getStaticProps = async () => {
 
 const postsContainerStyle = css`
   width: 100%;
-  background-color: red;
   ${FlexCenter}
 `;
+
 const PostStyle = css`
   width: 100%;
 `;
 
 const addContentsStyle = css`
-width: 100%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const addContentsButtonStyle = css`
-display: flex;
-width: 30px;
-`
+  display: flex;
+  width: 30px;
+`;
