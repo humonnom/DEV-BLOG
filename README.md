@@ -54,4 +54,4 @@
 # 저작권 및 라이선스(추후 업데이트 예정)
 # 버그 및 기능 요청(추후 업데이트 예정)
 # 기여자 정보
-- [humonnom]()
+- [humonnom](https://github.com/humonnom)
