@@ -39,3 +39,7 @@ yarn-error.log*
 
 # db
 /utils/db/serviceAccountKey.json
+
+# test files
+example.txt
+**/softskill.js
