@@ -1,38 +1,57 @@
 # 프로젝트 소개
-- 개발 블로그를 만들기 위한 프로젝트
+- 개발 블로그 만들기 프로젝트
 
 ## 프로젝트의 목적
-   - 개발블로그
+   - 블로깅
       - `개발 관련 기록`을 한 곳에 모으기 위한 목적 
    - 프로젝트 아카이빙
-      - 그 동안 해온 `프로젝트`를 한 곳에 모아서 정리하기 위한 목적
-   - 학습한 것을 연습하는 playground
-      - `최적화`와 `UX/UI` 관련된 주제를 연구해보고 적용해보기 위한 목적
+      - 그 동안 해온 `프로젝트`를 한 곳에 모아두기 위한 목적
+   - 학습한 것을 적용하는 playground
+      - 관심있는 기술과 주제를 연구/적용해보기 위한 목적
 
-## 카테고리
-   - HOME: 사이트의 표지 역할
-   - BLOG: 개발 블로그
-   - PROJECTS: 프로젝트 아카이빙
-   - CONTACT: 연락처 정보
+## 페이지
+   - HOME 페이지: 사이트의 표지, 메인 페이지 역할
+      - 게시물 추천 
+   - BLOG 페이지: 개발 블로그
+      - 카테고리 별로 분류된 게시글 목록 
+   - PROJECTS 페이지: 프로젝트 아카이빙
+   - CONTACT 페이지
+      - 연락처, 메일 등의 정보를 볼 수 있음
+      - 메세지를 남길 수 있음
+      
+## 연구/적용해본 내용
+### 간단한 버전의 UI 컴포넌트 기획/개발
 
-### 카테고리 설명
-   - HOME: 메인 페이지
-   - BLOG: 카테고리 별로 분류된 게시글 목록
-   - PROJECT: 미니 프로젝트로 이동할 수 있는 페이지
-   - CONTACT: 연락처, 메일 등의 정보와 메세지를 남길 수 있는 폼으로 구성
+* 초기 기획
+![ui-comp](https://user-images.githubusercontent.com/54441505/171970626-c7ade46d-4495-4618-b5a2-b8217ead6328.png)
 
-### 프로젝트
-   - Onit(온잇): 예술가를 위한 SNS 서비스
-   - movie-mate(무비메이트): 영화를 같이 보러 갈 사람을 구할 수 있는 사이트
+* 사이트에 적용된 모습
 
-# 실행 화면(추후 업데이트 예정)
+🔗 [보러가기](https://www.juepark.com/about)
 
-## BLOG
-<img width="1680" alt="Screen Shot 2022-05-28 at 2 38 26 PM" src="https://user-images.githubusercontent.com/54441505/170812788-35b7b998-0a8c-477a-aabb-d7f633575a38.png">
-<img width="1680" alt="Screen Shot 2022-05-28 at 2 38 35 PM" src="https://user-images.githubusercontent.com/54441505/170812793-00792b26-3f4d-494f-8133-189e0bd45053.png">
+<details>
+<summary>여기서 보기</summary>
+<div markdown="1">
+    <br>
+    <div align=center>
+    <img src="https://user-images.githubusercontent.com/54441505/171970798-107fa2ff-ee49-4052-b08e-9f861af7d459.png" width="1400" />
+    <img src="https://user-images.githubusercontent.com/54441505/171970823-cb363e73-ce7e-4f3e-89a0-96d6ce094840.png" width="1400" />
+    <img src="https://user-images.githubusercontent.com/54441505/171970835-3697286b-13ab-4e56-a915-5a5f449835e2.png" width="1400" />
+    </div>  
+    <br>
+   </a>
+</div>
+</details>
+
+# 실행 화면
+## BLOG 페이지
+* 게시글 리스트
+<img width="1200" alt="Screen Shot 2022-05-28 at 2 38 26 PM" src="https://user-images.githubusercontent.com/54441505/170812788-35b7b998-0a8c-477a-aabb-d7f633575a38.png">
+* 게시글 디테일
+<img width="1200" alt="Screen Shot 2022-05-28 at 2 38 35 PM" src="https://user-images.githubusercontent.com/54441505/170812793-00792b26-3f4d-494f-8133-189e0bd45053.png">
 
 
-# 실행 방법(추후 업데이트 예정)
+# 실행 방법
 
 # 시스템 구성도(작성중)
 ## 사용한 기술과 사용한 이유
