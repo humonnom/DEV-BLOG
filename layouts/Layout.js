@@ -21,10 +21,10 @@ export const HeadConf = () => {
 export const Nav = () => {
   const linkList = useMemo(() => {
     const list = [
-      { href: "/", label: "HOME" },
+      { href: "/", label: "○" },
       { href: "/blog", label: "BLOG" },
       { href: "/projects", label: "PROJECTS" },
-      { href: "/contact", label: "CONTACT" },
+      // { href: "/contact", label: "CONTACT" },
     ];
     return (
       <ul css={NavStyle}>

@@ -47,21 +47,21 @@ export function ContactForm() {
         <div>
           <div>
             <WhiteTofu
-              inside="email: "
+              inside="your email: "
               guide=" 연락처(email) "
               baby={<>{contactComp}</>}
             />
           </div>
-          <div>
+          {/* <div>
             <WhiteTofu
               inside="instagram: "
               guide=" 연락처(instagram) "
               baby={<>{instaComp}</>}
             />
-          </div>
+          </div> */}
           <div>
             <WhiteTofu
-              inside="memo: "
+              inside="your message: "
               guide="남기고 싶은 말을 적어주세요"
               baby={<>{memoComp}</>}
             />

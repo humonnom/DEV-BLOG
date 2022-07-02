@@ -40,7 +40,7 @@ export default function Projects() {
               font-size: ${FONT_SIZE.small};
             `}
           >
-            영화를 같이 볼 친구를 구할 수 있는 서비스(테스트 프로젝트)
+            영화를 같이 볼 친구를 구할 수 있는 서비스(alpha version)
           </p>
         </div>
         <div css={ProjectsBodyStyle}>
