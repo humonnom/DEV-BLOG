@@ -22,9 +22,7 @@ export const Nav = () => {
   const linkList = useMemo(() => {
     const list = [
       { href: "/", label: "○" },
-      { href: "/blog", label: "BLOG" },
-      { href: "/projects", label: "PROJECTS" },
-      // { href: "/contact", label: "CONTACT" },
+      { href: "/blog", label: "LOGS" },
     ];
     return (
       <ul css={NavStyle}>
