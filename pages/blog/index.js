@@ -17,13 +17,7 @@ import { useRouter } from "next/router";
 export default function Blog({ postsData }) {
   const categoryList = useMemo(() => {
     return [
-      { label: "js", color: COLOR_STYLE.green },
-      { label: "html", color: COLOR_STYLE.red },
-      { label: "css", color: COLOR_STYLE.red },
-      { label: "react", color: COLOR_STYLE.white },
-      { label: "os", color: COLOR_STYLE.white },
-      { label: "article", color: COLOR_STYLE.white },
-      { label: "else", color: COLOR_STYLE.white },
+      { label: "2022", color: COLOR_STYLE.black },
     ];
   }, []);
   const router = useRouter();
