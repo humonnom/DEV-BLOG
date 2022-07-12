@@ -1,15 +1,16 @@
 import { css } from "@emotion/react";
-import { useCallback, useEffect, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useReducer } from "react";
 import { useInput } from "./input";
-import { BlackPebble } from "./pebble";
+import { WhitePebble } from "./pebble";
 import { WhiteTofu } from "./tofu";
 import { useRequest } from "../hooks/useRequest";
 import { FONT_SIZE } from "../styles/global";
 
 export function ContactForm() {
-  const { comp: instaComp, value: instaValue } = useInput({ type: "text" });
-  const { comp: contactComp, value: contactValue } = useInput({ type: "text" });
-  const { comp: memoComp, value: memoValue } = useInput({ type: "text" });
+  const { comp: nicknameComp, value: nicknameValue } = useInput({ type: "text" });
+  const { comp: seatComp, value: seatValue } = useInput({ type: "text" });
+  const { comp: emailComp, value: emailValue } = useInput({ type: "text" });
+  const [checks, setChecks] = useReducer((prev, curr) => curr, {you: "", i: ""});
   const id = new Date().toISOString();
 
   const { res, request } = useRequest({
@@ -17,9 +18,10 @@ export function ContactForm() {
     method: "post",
     data: {
       info: {
-        insta: instaValue,
-        contact: contactValue,
-        memo: memoValue,
+        nickname: nicknameValue,
+        alphabet: seatValue,
+        memo: emailValue,
+        knowEachOther: checks,
       },
     },
   });
@@ -27,44 +29,50 @@ export function ContactForm() {
   useEffect(() => {
     if (res && res.status === 200) {
       alert("제출되었습니다. 감사합니다.");
+      
     }
   }, [res]);
 
   const submit = useCallback(() => {
-    if (contactValue !== "" && memoValue !== "") {
+    if (seatValue !== "" && nicknameValue !== ""  && emailValue !== "") {
       request();
     } else {
-      alert("이메일과 사이트 설명은 반드시 적어주세요");
+      alert("좌석과 닉네임, 연락처를 입력해주세요.(필수항목)");
     }
-  }, [contactValue, memoValue, request]);
+  }, [seatValue, nicknameValue, emailValue, request]);
 
   const Contents = useMemo(() => {
     return (
       <div css={ContactFormStyle}>
+          <p>Register</p>
         <div css={ContactTitleStyle}>
-          <p>Contact</p>
         </div>
         <div>
           <div>
             <WhiteTofu
-              inside="your email: "
-              guide=" 연락처(email) "
-              baby={<>{contactComp}</>}
+              inside="Alphabet:"
+              guide="Choose your seat"
+              baby={<>{seatComp}</>}
             />
           </div>
-          {/* <div>
-            <WhiteTofu
-              inside="instagram: "
-              guide=" 연락처(instagram) "
-              baby={<>{instaComp}</>}
-            />
-          </div> */}
           <div>
             <WhiteTofu
-              inside="your message: "
-              guide="남기고 싶은 말을 적어주세요"
-              baby={<>{memoComp}</>}
+              inside="Nickname: "
+              baby={<>{nicknameComp}</>}
             />
+          </div>
+          <div>
+            <WhiteTofu
+              inside="Email: "
+              guide="Your contact"
+              baby={<>{emailComp}</>}
+            />
+          </div>
+          <div css={css`display: flex`}>
+            <label htmlFor="you">Do you know me?</label> <input id="you" type="checkbox" checked={checks['you']} onChange={(e) => setChecks({...checks, ['you']: e.target.checked})}/>
+          </div>
+          <div css={css`display: flex`}>
+            <label htmlFor="i">Do I know you?</label> <input id="i" type="checkbox" checked={checks['i']} onChange={(e) => setChecks({...checks, ['i']: e.target.checked})}/>
           </div>
         </div>
         <div css={RegisterButtonStyle}>
@@ -72,14 +80,16 @@ export function ContactForm() {
             css={css`
               font-size: ${FONT_SIZE.xSmall};
               height: 20px;
+              width: 50px;
+              margin-top: 10px;
             `}
           >
-            <BlackPebble inside="send" action={submit} />
+            <WhitePebble inside="send" action={submit} />
           </div>
         </div>
       </div>
     );
-  }, [contactComp, submit, memoComp, instaComp]);
+  }, [seatComp, submit, emailComp, nicknameComp, checks]);
   return Contents;
 }
 const RegisterButtonStyle = css`
