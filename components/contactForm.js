@@ -10,6 +10,7 @@ export function ContactForm() {
   const { comp: nicknameComp, value: nicknameValue } = useInput({ type: "text" });
   const { comp: seatComp, value: seatValue } = useInput({ type: "text" });
   const { comp: emailComp, value: emailValue } = useInput({ type: "text" });
+  const { comp: movieComp, value: movieValue } = useInput({ type: "text" });
   const [checks, setChecks] = useReducer((prev, curr) => curr, {you: "", i: ""});
   const id = new Date().toISOString();
 
@@ -20,7 +21,8 @@ export function ContactForm() {
       info: {
         nickname: nicknameValue,
         alphabet: seatValue,
-        memo: emailValue,
+        email: emailValue,
+        movie: movieValue,
         knowEachOther: checks,
       },
     },
@@ -29,12 +31,13 @@ export function ContactForm() {
   useEffect(() => {
     if (res && res.status === 200) {
       alert("제출되었습니다. 감사합니다.");
-      
     }
   }, [res]);
 
   const submit = useCallback(() => {
-    if (seatValue !== "" && nicknameValue !== ""  && emailValue !== "") {
+    if (seatValue.length !== 1){
+      alert('좌석은 알파벳 한글자로 입력해주세요.');
+    } else if (seatValue !== "" && nicknameValue !== ""  && emailValue !== "") {
       request();
     } else {
       alert("좌석과 닉네임, 연락처를 입력해주세요.(필수항목)");
@@ -57,15 +60,22 @@ export function ContactForm() {
           </div>
           <div>
             <WhiteTofu
-              inside="Nickname: "
+              inside="Nickname:"
+              guide={`must start with ${seatValue}`}
               baby={<>{nicknameComp}</>}
             />
           </div>
           <div>
             <WhiteTofu
-              inside="Email: "
+              inside="Email:"
               guide="Your contact"
               baby={<>{emailComp}</>}
+            />
+          </div>
+          <div>
+            <WhiteTofu
+              inside="Your favorite movie:"
+              baby={<>{movieComp}</>}
             />
           </div>
           <div css={css`display: flex`}>
@@ -89,7 +99,7 @@ export function ContactForm() {
         </div>
       </div>
     );
-  }, [seatComp, submit, emailComp, nicknameComp, checks]);
+  }, [seatComp,seatValue, submit, emailComp, nicknameComp, movieComp, checks]);
   return Contents;
 }
 const RegisterButtonStyle = css`
